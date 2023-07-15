@@ -24,12 +24,12 @@
 
                     <div class="card-body">
                         <!-- Mensajes de Alerta -->
-                        <div class="alert alert-success text-center" id="add" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Usuario registrado con exito</span>
+                        <div class="alert alert-success text-center" id="add-laboratorio" style="display:none;">
+                            <span><i class="fas fa-thumbs-up m-1"></i> Laboratorio registrado con exito</span>
                         </div>
 
-                        <div class="alert alert-danger text-center" id="noadd" style="display:none;">
-                            <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El DNI ya existe en otro Usuario</b></span>
+                        <div class="alert alert-danger text-center" id="noadd-laboratorio" style="display:none;">
+                            <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El Laboratorio ya existe</b></span>
                         </div>
                         <!-- Fin Mensajes de Alerta -->
 
@@ -178,6 +178,7 @@
 
                         <div class="card-body">
                             <div class="tab-content">
+                                <!-- Laboratorio -->
                                 <div class="tab-pane active" id="laboratorio">
                                     <div class="card card-success">
                                         <div class="card-header">
@@ -198,6 +199,7 @@
                                     </div><!-- /.card -->
                                 </div><!-- /.tab -->
 
+                                <!-- Tipo -->
                                 <div class="tab-pane" id="tipo">
                                     <div class="card card-success">
                                         <div class="card-header">
@@ -218,6 +220,7 @@
                                     </div><!-- /.card -->
                                 </div><!-- /.tab -->
 
+                                <!-- Presentación -->
                                 <div class="tab-pane" id="presentacion">
                                     <div class="card card-success">
                                         <div class="card-header">
@@ -260,3 +263,5 @@
         
     }  
 ?>
+
+<script src="../js/Laboratorio.js"></script>
