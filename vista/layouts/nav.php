@@ -86,14 +86,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-header">EXAMPLES</li>
+                        <li class="nav-header">Almacén</li>
                         
                         <li class="nav-item">
-                            <a href="../gallery.html" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>
-                                Gallery
-                            </p>
+                            <a href="adm_atributo.php" class="nav-link">
+                                <i class="nav-icon fas fa-vials"></i>
+                                <p>
+                                    Gestión Atributo
+                                </p>
                             </a>
                         </li>
 
