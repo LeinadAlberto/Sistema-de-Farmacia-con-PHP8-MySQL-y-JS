@@ -194,8 +194,25 @@
                                                 </div>
                                             </div><!-- /.input-group -->
                                         </div><!-- /.card-header -->
-                                        <div class="card-body"></div>
-                                        <div class="card-footer"></div>
+
+                                        <div class="card-body p-0">
+                                            <table class="table table-over text-nowrap">
+                                                <thead class="table-success">
+                                                    <tr>
+                                                        <th>Laboratorio</th>
+                                                        <th>Logo</th>
+                                                        <th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-active" id="laboratorios">
+
+                                                </tbody>
+                                            </table>
+                                        </div><!-- /.card-body -->
+
+                                        <div class="card-footer">
+
+                                        </div><!-- /.card-footer -->
                                     </div><!-- /.card -->
                                 </div><!-- /.tab -->
 
