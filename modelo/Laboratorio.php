@@ -55,4 +55,23 @@
             }
         }
 
+        function cambiar_logo($id, $nombre) {
+            /* Obtenemos el avatar actual */
+            $sql = "SELECT avatar 
+                    FROM laboratorio 
+                    WHERE id_laboratorio = :id";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id));
+            $this -> objetos = $query -> fetchAll();
+
+            /* Remplazamos el nuevo avatar */
+            $sql = "UPDATE laboratorio 
+                    SET avatar = :nombre 
+                    WHERE id_laboratorio = :id";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id, ":nombre" => $nombre));
+
+            return $this -> objetos; /* Retornamos al controlador el avatar antiguo */
+        } 
+
     }

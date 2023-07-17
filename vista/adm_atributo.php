@@ -10,6 +10,53 @@
 
     <?php include_once "layouts/nav.php"; ?>
 
+    <!-- Modal para cambiar Logo de Laboratorio -->
+    <div class="modal fade" id="cambiologo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Logo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img id="logoactual" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
+                    </div>
+                    <div class="text-center">
+                        <b id="nombre_logo"></b>
+                    </div>
+                    <!-- Mensajes de Alerta -->
+                    <div class="alert alert-success text-center" id="edit" style="display:none;">
+                        <span><i class="fas fa-thumbs-up m-1"></i> Logo cambiado con exito</span>
+                    </div>
+
+                    <div class="alert alert-danger text-center" id="noedit" style="display:none;">
+                        <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
+                    </div>
+                    <!-- Fin Mensajes de Alerta -->
+
+                    <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
+                    <form id="form-logo" enctype="multipart/form-data">
+                        <div class="input-group ml-5 mb-3 mt-3">
+                            <input type="file" name="photo" class="input-group ml-5 ">
+                            <input type="text" name="funcion" id="funcion">
+                            <input type="text" name="id_logo_lab" id="id_logo_lab">
+                        </div><!-- /.input-group -->
+
+                </div><!-- /.modal-body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+
     <!-- Modal para Crear Laboratorio -->
     <div class="modal fade" id="crearlaboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -176,14 +223,14 @@
                             </ul>
                         </div><!-- /.card-header -->
 
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="tab-content">
                                 <!-- Laboratorio -->
                                 <div class="tab-pane active" id="laboratorio">
-                                    <div class="card card-success">
+                                    <div class="card card-info">
                                         <div class="card-header">
                                             <div class="card-title">Buscar Laboratorio 
-                                                <button type="button" data-toggle="modal" data-target="#crearlaboratorio" class="btn bg-gradient-primary btn-sm m-2">
+                                                <button type="button" data-toggle="modal" data-target="#crearlaboratorio" class="btn bg-gradient-info btn-sm m-2">
                                                     Crear Laboratorio
                                                 </button>
                                             </div><!-- /.card-title -->
@@ -195,9 +242,9 @@
                                             </div><!-- /.input-group -->
                                         </div><!-- /.card-header -->
 
-                                        <div class="card-body p-0">
-                                            <table class="table table-over text-nowrap">
-                                                <thead class="table-success">
+                                        <div class="card-body p-0 table-responsive">
+                                            <table class="table table-hover text-nowrap">
+                                                <thead class="table-info">
                                                     <tr>
                                                         <th>Laboratorio</th>
                                                         <th>Logo</th>

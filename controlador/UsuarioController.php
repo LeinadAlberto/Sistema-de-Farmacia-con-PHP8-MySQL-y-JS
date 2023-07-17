@@ -101,7 +101,6 @@
             $jsonstring = json_encode($json[0]);
             echo $jsonstring;
         }   
-
     } 
 
     /* Respuestas para Gestion Usuario */
