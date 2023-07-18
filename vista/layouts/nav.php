@@ -1,6 +1,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- SweetAlert2 - CSS -->
+    <link rel="stylesheet" href="../css/sweetalert2.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../css/css/all.min.css">
     <!-- Ionicons -->

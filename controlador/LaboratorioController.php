@@ -58,3 +58,8 @@
             echo $jsonstring;
         }   
     }
+
+    if ($_POST["funcion"] == "borrar") {
+        $id = $_POST["id"];
+        $laboratorio -> borrar($id);
+    }
