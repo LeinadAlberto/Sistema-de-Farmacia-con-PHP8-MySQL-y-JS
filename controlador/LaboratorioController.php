@@ -10,6 +10,12 @@
         $laboratorio -> crear($nombre, $avatar);
     }
 
+    if ($_POST["funcion"] == "editar") {
+        $nombre = $_POST["nombre_laboratorio"];
+        $id_editado = $_POST["id_editado"];
+        $laboratorio -> editar($id_editado, $nombre);
+    }
+
     if ($_POST["funcion"] == "buscar") { 
         $laboratorio -> buscar();
         $json = array();

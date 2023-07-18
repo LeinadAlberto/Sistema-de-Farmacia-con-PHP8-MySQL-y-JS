@@ -88,4 +88,13 @@
             }
         }
 
+        function editar($id_editado, $nombre) {
+            $sql = "UPDATE laboratorio
+                    SET nombre = :nombre 
+                    WHERE id_laboratorio = :id";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id_editado, ":nombre" => $nombre));
+            echo "edit";
+        }
+
     }

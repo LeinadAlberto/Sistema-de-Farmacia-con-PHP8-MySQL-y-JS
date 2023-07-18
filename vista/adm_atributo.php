@@ -78,17 +78,22 @@
                         <div class="alert alert-danger text-center" id="noadd-laboratorio" style="display:none;">
                             <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El Laboratorio ya existe</b></span>
                         </div>
+
+                        <div class="alert alert-success text-center" id="edit-lab" style="display:none;">
+                            <span><i class="fas fa-thumbs-up m-1"></i> Laboratorio editado con exito</span>
+                        </div>
                         <!-- Fin Mensajes de Alerta -->
 
                         <form id="form-crear-laboratorio">
                             <div class="form-group">
                                 <label for="nombre-laboratorio">Nombre</label>
                                 <input id="nombre-laboratorio" type="text" class="form-control" placeholder="Ingrese nombre" required>
+                                <input type="text" id="id_editar_lab">                       
                             </div>
                     </div><!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
+                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
                         <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
                         </form>
                     </div><!-- /.card-footer -->

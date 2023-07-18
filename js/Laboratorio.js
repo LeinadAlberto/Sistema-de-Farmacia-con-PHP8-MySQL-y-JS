@@ -1,24 +1,40 @@
 $(document).ready(function() {
     buscar_lab();
     var funcion = '';
+    var edit = false;
 
     $('#form-crear-laboratorio').submit(e => {
         let nombre_laboratorio = $('#nombre-laboratorio').val();
-        funcion = 'crear';
-        $.post('../controlador/LaboratorioController.php', {nombre_laboratorio, funcion}, (response) => {
-            console.log(response);
+        let id_editado = $('#id_editar_lab').val();
+        /* Si la variable editar tiene el valor de false se crea un laboratorio, caso contrario se edita */
+        if (edit == false) {
+            funcion = 'crear';
+        } else {
+            funcion = 'editar';
+        }
+        $.post('../controlador/LaboratorioController.php', {nombre_laboratorio, id_editado, funcion}, (response) => {
+            /* console.log(response); */
             if (response == "add") {
                 $('#add-laboratorio').hide('slow');
                 $('#add-laboratorio').show(1200);
                 $('#add-laboratorio').hide(1700);
                 $('#form-crear-laboratorio').trigger('reset');
                 buscar_lab();
-            } else {
+            } 
+            if (response == "noadd") {
                 $('#noadd-laboratorio').hide('slow');
                 $('#noadd-laboratorio').show(1200);
                 $('#noadd-laboratorio').hide(1700);
                 $('#form-crear-laboratorio').trigger('reset');
             }
+            if (response == "edit") {
+                $('#edit-lab').hide('slow');
+                $('#edit-lab').show(1200);
+                $('#edit-lab').hide(1700);
+                $('#form-crear-laboratorio').trigger('reset');
+                buscar_lab();
+            }
+            edit = false;
         });
         e.preventDefault();
     });
@@ -41,7 +57,7 @@ $(document).ready(function() {
                                 <i class="far fa-image"></i>
                             </button>
 
-                            <button class="editar btn btn-success" title="Editar laboratorio">
+                            <button class="editar btn btn-success" title="Editar laboratorio" type="button" data-toggle="modal" data-target="#crearlaboratorio">
                                 <i class="fas fa-pencil-alt"></i>
                             </button>
 
@@ -116,7 +132,7 @@ $(document).ready(function() {
         const id = $(elemento).attr('labid');
         const nombre = $(elemento).attr('labnombre');
         const avatar = $(elemento).attr('labavatar');
-        console.log(`${id} - ${nombre} - ${avatar}`);
+        /* console.log(`${id} - ${nombre} - ${avatar}`); */
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -140,6 +156,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.post('../controlador/LaboratorioController.php', {id, funcion}, (response) => {
+                    edit = false;
                     /* console.log(response); */
                     if (response == "borrado") {
                         swalWithBootstrapButtons.fire(
@@ -166,6 +183,15 @@ $(document).ready(function() {
         })
        
        
+    });
+
+    $(document).on('click', '.editar', (e) => {
+        const elemento = $(this)[0].activeElement.parentElement.parentElement;
+        const id = $(elemento).attr('labid');
+        const nombre = $(elemento).attr('labnombre');
+        $('#id_editar_lab').val(id);
+        $('#nombre-laboratorio').val(nombre);
+        edit = true;
     });
 
 
