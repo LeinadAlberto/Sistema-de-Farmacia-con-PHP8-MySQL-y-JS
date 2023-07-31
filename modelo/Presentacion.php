@@ -78,4 +78,14 @@
             echo "edit";
         }
 
+        function rellenar_presentaciones() {
+            $sql = "SELECT *
+                    FROM presentacion
+                    ORDER BY nombre ASC";
+                $query = $this -> acceso -> prepare($sql);
+                $query -> execute();
+                $this -> objetos = $query -> fetchAll();
+                return $this -> objetos;
+        }
+
     }

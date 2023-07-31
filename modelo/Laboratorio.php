@@ -97,4 +97,14 @@
             echo "edit";
         }
 
+        function rellenar_laboratorios() {
+            $sql = "SELECT *
+                    FROM laboratorio
+                    ORDER BY nombre ASC";
+                $query = $this -> acceso -> prepare($sql);
+                $query -> execute();
+                $this -> objetos = $query -> fetchAll();
+                return $this -> objetos;
+        }
+
     }

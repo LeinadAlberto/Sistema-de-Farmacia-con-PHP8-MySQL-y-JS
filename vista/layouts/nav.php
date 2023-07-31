@@ -1,6 +1,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Select2 - CSS - Versión 4.1.0 -->
+    <link rel="stylesheet" href="../css/select2.css">
     <!-- SweetAlert2 - CSS -->
     <link rel="stylesheet" href="../css/sweetalert2.css">
     <!-- Font Awesome -->
@@ -90,6 +92,15 @@
 
                         <li class="nav-header">Almacén</li>
                         
+                        <li class="nav-item">
+                            <a href="adm_producto.php" class="nav-link">
+                                <i class="nav-icon fas fa-pills"></i>
+                                <p>
+                                    Gestión Producto
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="adm_atributo.php" class="nav-link">
                                 <i class="nav-icon fas fa-vials"></i>
