@@ -6,6 +6,7 @@ $(document).ready(function() {
     rellenar_laboratorios();
     rellenar_tipos();
     rellenar_presentaciones();
+    buscar_producto();
 
     function rellenar_laboratorios() {
         funcion = 'rellenar_laboratorios';
@@ -58,9 +59,41 @@ $(document).ready(function() {
         let tipo = $('#tipo').val();
         let presentacion = $('#presentacion').val();
 
-        console.log(`${nombre} ${concentracion} ${adicional} ${precio} ${laboratorio} ${tipo} ${presentacion}`);
+        funcion = "crear";
+        $.post("../controlador/ProductoController.php", {nombre, concentracion, adicional, precio, laboratorio, tipo, presentacion, funcion}, (response) => {
+            if (response == "add") {
+                $('#add').hide('slow');
+                $('#add').show(1200);
+                $('#add').hide(1700);
+                $('#form-crear-producto').trigger('reset');
+            }  
+            if (response == "noadd") {
+                $('#noadd').hide('slow');
+                $('#noadd').show(1200);
+                $('#noadd').hide(1700);
+                $('#form-crear-producto').trigger('reset');
+            }
+            buscar_producto();
+        });
 
         e.preventDefault();    
+    });
+
+    function buscar_producto(consulta) {
+        funcion = "buscar";
+        $.post("../controlador/ProductoController.php", {consulta, funcion}, (response) => {
+            console.log(response);
+        });
+    }
+
+    $(document).on('keyup', '#buscar-producto', function() {
+        let valor = $(this).val(); /* Almacena dentro la variable valor los datos que se ingresan dentro #buscar. */
+        console.log(valor);
+        if (valor != '') {
+            buscar_producto(valor);
+        } else {
+            buscar_producto();
+        } 
     });
 
 });
