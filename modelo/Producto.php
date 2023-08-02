@@ -84,7 +84,7 @@
                         JOIN tipo_producto ON prod_tip_prod = id_tip_prod
                         JOIN presentacion ON prod_present = id_presentacion
                         AND producto.nombre NOT LIKE ''
-                        ORDER BY producto.id_producto
+                        ORDER BY producto.nombre
                         LIMIT 25";
                 $query = $this -> acceso -> prepare($sql);
                 $query -> execute();
