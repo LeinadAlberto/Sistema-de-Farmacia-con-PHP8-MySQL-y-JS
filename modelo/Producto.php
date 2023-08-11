@@ -15,7 +15,12 @@
             /* Verifico primero si el nombre del producto ya existe en la Tabla producto de la BD. */
             $sql = "SELECT id_producto 
                     FROM producto 
-                    WHERE nombre = :nombre AND concentracion = :concentracion AND adicional = :adicional AND prod_lab = :laboratorio AND prod_tip_prod = :tipo AND prod_present = :presentacion";
+                    WHERE nombre = :nombre 
+                        AND concentracion = :concentracion 
+                        AND adicional = :adicional 
+                        AND prod_lab = :laboratorio 
+                        AND prod_tip_prod = :tipo 
+                        AND prod_present = :presentacion";
             $query = $this -> acceso -> prepare($sql);
             $query -> execute(array(":nombre" => $nombre, 
                                     ":concentracion" => $concentracion,
@@ -57,7 +62,10 @@
                             laboratorio.nombre as laboratorio,
                             tipo_producto.nombre as tipo,
                             presentacion.nombre as presentacion,
-                            producto.avatar as avatar
+                            producto.avatar as avatar,
+                            prod_lab,
+                            prod_tip_prod,
+                            prod_present
                         FROM producto
                         JOIN laboratorio ON prod_lab = id_laboratorio
                         JOIN tipo_producto ON prod_tip_prod = id_tip_prod
@@ -78,7 +86,10 @@
                             laboratorio.nombre as laboratorio,
                             tipo_producto.nombre as tipo,
                             presentacion.nombre as presentacion,
-                            producto.avatar as avatar
+                            producto.avatar as avatar,
+                            prod_lab,
+                            prod_tip_prod,
+                            prod_present
                         FROM producto
                         JOIN laboratorio ON prod_lab = id_laboratorio
                         JOIN tipo_producto ON prod_tip_prod = id_tip_prod
@@ -93,29 +104,65 @@
             }
         }
 
-
-
-
-
-
         function cambiar_logo($id, $nombre) {
-            /* Obtenemos el avatar actual */
-            $sql = "SELECT avatar 
-                    FROM laboratorio 
-                    WHERE id_laboratorio = :id";
-            $query = $this -> acceso -> prepare($sql);
-            $query -> execute(array(":id" => $id));
-            $this -> objetos = $query -> fetchAll();
-
-            /* Remplazamos el nuevo avatar */
-            $sql = "UPDATE laboratorio 
+            $sql = "UPDATE producto 
                     SET avatar = :nombre 
-                    WHERE id_laboratorio = :id";
+                    WHERE id_producto = :id";
             $query = $this -> acceso -> prepare($sql);
             $query -> execute(array(":id" => $id, ":nombre" => $nombre));
-
-            return $this -> objetos; /* Retornamos al controlador el avatar antiguo */
         } 
+
+        function editar($id, $nombre, $concentracion, $adicional, $precio, $laboratorio, $tipo, $presentacion) {
+            /* Verifico primero si el nombre del producto ya existe en la Tabla producto de la BD. */
+            $sql = "SELECT id_producto 
+                    FROM producto 
+                    WHERE id_producto != :id 
+                        AND nombre = :nombre 
+                        AND concentracion = :concentracion 
+                        AND adicional = :adicional 
+                        AND prod_lab = :laboratorio 
+                        AND prod_tip_prod = :tipo 
+                        AND prod_present = :presentacion";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id,
+                                    ":nombre" => $nombre, 
+                                    ":concentracion" => $concentracion,
+                                    ":adicional" => $adicional,
+                                    ":laboratorio" => $laboratorio,
+                                    ":tipo" => $tipo,
+                                    ":presentacion" => $presentacion));
+            $this -> objetos = $query -> fetchAll();
+            if (!empty($this -> objetos)) {
+                echo "noedit";
+            } else {
+                $sql = "UPDATE producto 
+                        SET nombre = :nombre, 
+                            concentracion = :concentracion, 
+                            adicional = :adicional, 
+                            prod_lab = :laboratorio, 
+                            prod_tip_prod = :tipo, 
+                            prod_present = :presentacion,
+                            precio = :precio
+                        WHERE id_producto = :id
+                            ";
+                $query = $this -> acceso -> prepare($sql);
+                $query -> execute(array(":nombre" => $nombre, 
+                                    ":concentracion" => $concentracion,
+                                    ":adicional" => $adicional,
+                                    ":laboratorio" => $laboratorio,
+                                    ":tipo" => $tipo,
+                                    ":presentacion" => $presentacion,
+                                    ":precio" => $precio,
+                                    ":id" => $id
+                                ));
+                echo "edit";
+            }
+        }
+        
+
+
+
+
 
         function borrar($id) {
             $sql = "DELETE FROM laboratorio 
@@ -131,14 +178,7 @@
             }
         }
 
-        function editar($id_editado, $nombre) {
-            $sql = "UPDATE laboratorio
-                    SET nombre = :nombre 
-                    WHERE id_laboratorio = :id";
-            $query = $this -> acceso -> prepare($sql);
-            $query -> execute(array(":id" => $id_editado, ":nombre" => $nombre));
-            echo "edit";
-        }
+        
 
         function rellenar_laboratorios() {
             $sql = "SELECT *

@@ -9,6 +9,54 @@
         
 <?php include_once "layouts/nav.php"; ?>
 
+<!-- Modal para cambiar la Imágen de un Producto -->
+<div class="modal fade" id="cambiologo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar Logo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img id="logoactual" src="../img/avatar.png" alt="Imágen del Producto" class="profile-user-img img-fluid img-circle">
+                </div>
+                <div class="text-center">
+                    <b id="nombre_logo"></b>
+                </div>
+
+                <!-- Mensajes de Alerta -->
+                <div class="alert alert-success text-center" id="edit" style="display:none;">
+                    <span><i class="fas fa-thumbs-up m-1"></i> Logo cambiado con exito</span>
+                </div>
+                <div class="alert alert-danger text-center" id="noedit" style="display:none;">
+                    <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
+                </div>
+                <!-- Fin Mensajes de Alerta -->
+
+                <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
+                <form id="form-logo" enctype="multipart/form-data">
+                    <div class="input-group ml-5 mb-3 mt-3">
+                        <input type="file" name="photo" class="input-group ml-5 ">
+                        <input type="text" name="funcion" id="funcion">
+                        <input type="text" name="id_logo_prod" id="id_logo_prod">
+                        <input type="text" name="avatar" id="avatar">
+                    </div><!-- /.input-group -->
+
+            </div><!-- /.modal-body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->
+
 <!-- Modal para Crear Producto -->
 <div class="modal fade" id="crearproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -28,7 +76,11 @@
                     </div>
 
                     <div class="alert alert-danger text-center" id="noadd" style="display:none;">
-                        <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El producto ya existe</b></span>
+                        <span><i class="fas fa-exclamation-triangle m-1"></i> <b>¡Acción no permitida!. El Producto ya existe.</b></span>
+                    </div>
+
+                    <div class="alert alert-success text-center" id="edit_prod" style="display:none;">
+                        <span><i class="fas fa-thumbs-up m-1"></i> Producto editado con exito</span>
                     </div>
                     <!-- Fin Mensajes de Alerta -->
 
@@ -61,6 +113,8 @@
                             <label for="presentacion">Presentación</label>
                             <select id="presentacion" class="form-control select2" style="width: 100%;"></select>
                         </div>
+                        <!-- Envia el id del Producto al Controlador -->
+                        <input type="text" id="id_edit_prod">
                     
                 </div><!-- /.card-body -->
 
