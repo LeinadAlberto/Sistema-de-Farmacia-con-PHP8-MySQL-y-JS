@@ -249,4 +249,61 @@ $(document).ready(function() {
         console.log(edit);
     });
 
+    $(document).on('click', '.borrar', (e) => {
+        funcion = 'borrar';
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        /* console.log(elemento); */
+        const id = $(elemento).attr('prodId');
+        const nombre = $(elemento).attr('prodNombre');
+        const avatar = $(elemento).attr('prodAvatar');
+       
+        console.log(`${id} - ${nombre} - ${avatar}`);
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false
+        })
+          
+        swalWithBootstrapButtons.fire({
+            title: 'Estas seguro de eliminar el producto ' + nombre + '?',
+            text: "¡No podrás revertir esto!",
+            imageUrl: '' + avatar + '',
+            imageWidth: 100,
+            imageHeight: 100, 
+            showCancelButton: true,
+            confirmButtonText: '¡Sí, bórralo!',
+            cancelButtonText: '¡No, cancela!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post('../controlador/ProductoController.php', {id, funcion}, (response) => {
+                    edit = false; 
+                    if (response == "borrado") {
+                        swalWithBootstrapButtons.fire(
+                            '¡Eliminado!',
+                            'El producto ' + nombre + ' ha sido eliminado.',
+                            'success'
+                        ) 
+                        buscar_producto();
+                    } else {
+                        swalWithBootstrapButtons.fire(
+                            '¡Proceso no realizado!',
+                            'El producto ' + nombre + ' no se pudo eliminar porque esta siendo usado en un lote.',
+                            'error'
+                        )
+                     }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'El producto ' + nombre + ' no fue eliminado :)',
+                    'error'
+                )
+            }
+        })
+    }); 
+
 });

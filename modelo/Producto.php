@@ -159,35 +159,18 @@
             }
         }
         
-
-
-
-
-
         function borrar($id) {
-            $sql = "DELETE FROM laboratorio 
-                    WHERE id_laboratorio = :id";
+            $sql = "DELETE FROM producto 
+                    WHERE id_producto = :id";
             $query = $this -> acceso -> prepare($sql);
             $query -> execute(array(":id" => $id));
 
-            /* Verifica si se elimino el registro */
+            /* Verifica si se elimino el producto */
             if (!empty($query -> execute(array(":id" => $id)))) {
                 echo "borrado";
             } else {
-                "noborrado";
+                echo "noborrado";
             }
-        }
-
-        
-
-        function rellenar_laboratorios() {
-            $sql = "SELECT *
-                    FROM laboratorio
-                    ORDER BY nombre ASC";
-                $query = $this -> acceso -> prepare($sql);
-                $query -> execute();
-                $this -> objetos = $query -> fetchAll();
-                return $this -> objetos;
         }
 
     }

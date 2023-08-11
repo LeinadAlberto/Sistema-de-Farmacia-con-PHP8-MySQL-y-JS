@@ -65,7 +65,7 @@
             if (!empty($query -> execute(array(":id" => $id)))) {
                 echo "borrado";
             } else {
-                "noborrado";
+                echo "noborrado";
             }
         }
 

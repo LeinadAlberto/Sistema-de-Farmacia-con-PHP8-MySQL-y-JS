@@ -87,3 +87,8 @@
         
         $producto -> editar($id, $nombre, $concentracion, $adicional, $precio, $laboratorio, $tipo, $presentacion);
     }
+
+    if ($_POST["funcion"] == "borrar") {
+        $id = $_POST["id"];
+        $producto -> borrar($id);
+    }
