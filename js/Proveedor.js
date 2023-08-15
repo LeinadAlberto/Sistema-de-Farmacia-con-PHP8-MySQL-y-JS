@@ -31,7 +31,58 @@ $(document).ready(function() {
     function buscar_prov(consulta) {
         funcion = 'buscar';
         $.post('../controlador/ProveedorController.php', {funcion, consulta}, (response) => {
-            console.log(response);
+            const proveedores = JSON.parse(response);
+            let template = '';
+            proveedores.forEach(proveedor => {
+                template += `
+                <div provId="${proveedor.id}" 
+                    provNombre="${proveedor.nombre}" 
+                    provDireccion="${proveedor.direccion}"
+                    provTelefono="${proveedor.telefono}"
+                    provCorreo="${proveedor.correo}"
+                    provAvatar="${proveedor.avatar}"
+                    class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                    <div class="card bg-light">
+                        <div class="card-header text-muted border-bottom-0 mb-2">
+                            <h1 class="badge badge-success">Proveedor</h1>   
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="lead"><b>${proveedor.nombre}</b></h2>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <hr class="mt-1 mb-1 bg-info">
+                                        <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-building mr-1"></i></span> <b>Dirección:</b> ${proveedor.direccion}</li>
+                                        <hr class="mt-1 mb-1 bg-info">
+                                        <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-phone mr-1"></i></span> <b>Teléfono #:</b> ${proveedor.telefono}</li>
+                                        <hr class="mt-1 mb-1 bg-info">
+                                        <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-at mr-1"></i></span> <b>Correo Electrónico:</b> ${proveedor.correo}</li>
+                                        <hr class="mt-1 mb-1 bg-info">
+                                    </ul>
+                                </div>
+                                <div class="col-5 text-center">
+                                    <img src="${proveedor.avatar}" alt="" class="img-circle img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-right">
+                                <button class="avatar btn btn-sm btn-info mr-1" title="Editar Logo" type="button" data-toggle="modal" data-target="#cambiologo">
+                                    <i class="fas fa-image"></i>
+                                </button>
+                                <button class="editar btn btn-sm btn-success mr-1" title="Editar Proveedor" type="button" data-toggle="modal" data-target="#cambiologo">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                                <button class="borrar btn btn-sm btn-danger mr-1" title="Eliminar Proveedor" type="button" data-toggle="modal" data-target="#cambiologo">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            $('#proveedores').html(template);
         });
     }
 
@@ -42,6 +93,19 @@ $(document).ready(function() {
         } else {
             buscar_prov();
         }
+    });
+
+    $(document).on('click', '.avatar', (e) => {
+        funcion = 'cambiar_logo';
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id = $(elemento).attr('provId');
+        const nombre = $(elemento).attr('provNombre');
+        const avatar = $(elemento).attr('provAvatar');
+        console.log(`${id} - ${nombre} - ${avatar}`);
+        $('#logoactual').attr('src', avatar);
+        $('#nombre_logo').html(nombre);
+        $('#funcion').val(funcion);
+        $('#id_logo_prov').val(id);
     });
 
 });

@@ -64,6 +64,53 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- Modal para cambiar Logo de Proveedor -->
+<div class="modal fade" id="cambiologo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar Logo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img id="logoactual" src="" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
+                </div>
+                <div class="text-center">
+                    <b id="nombre_logo"></b>
+                </div>
+                <!-- Mensajes de Alerta -->
+                <div class="alert alert-success text-center" id="edit-prov" style="display:none;">
+                    <span><i class="fas fa-thumbs-up m-1"></i> Logo cambiado con exito</span>
+                </div>
+
+                <div class="alert alert-danger text-center" id="noedit-prov" style="display:none;">
+                    <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
+                </div>
+                <!-- Fin Mensajes de Alerta -->
+
+                <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
+                <form id="form-logo" enctype="multipart/form-data">
+                    <div class="input-group ml-5 mb-3 mt-3">
+                        <input type="file" name="photo" class="input-group ml-5 ">
+                        <input type="text" name="funcion" id="funcion">
+                        <input type="text" name="id_logo_prov" id="id_logo_prov">
+                    </div><!-- /.input-group -->
+
+            </div><!-- /.modal-body -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     
