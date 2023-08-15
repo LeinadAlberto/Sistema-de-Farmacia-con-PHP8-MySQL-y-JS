@@ -59,4 +59,13 @@
                 return $this -> objetos;
             }
         }
+
+        function cambiar_logo($id, $nombre) {
+            $sql = "UPDATE proveedor 
+                    SET avatar = :nombre 
+                    WHERE id_proveedor = :id";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id, ":nombre" => $nombre));
+        } 
+
     }

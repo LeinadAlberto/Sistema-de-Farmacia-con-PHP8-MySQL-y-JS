@@ -106,6 +106,35 @@ $(document).ready(function() {
         $('#nombre_logo').html(nombre);
         $('#funcion').val(funcion);
         $('#id_logo_prov').val(id);
+        $('#avatar').val(avatar);
+    });
+
+    $('#form-logo').submit( e => {
+        let formData = new FormData($('#form-logo')[0]);
+        $.ajax({
+            url: "../controlador/ProveedorController.php",
+            type: "post",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false
+        }).done(function(response) {
+            const json = JSON.parse(response);
+            if (json.alert == 'edit') {
+                $('#logoactual').attr('src', json.ruta);
+                $('#edit-prov').hide('slow');
+                $('#edit-prov').show(1200);
+                $('#edit-prov').hide(1700);
+                $('#form-logo').trigger('reset');
+                buscar_prov();
+            } else {
+                $('#noedit-prov').hide('slow');
+                $('#noedit-prov').show(1200);
+                $('#noedit-prov').hide(1700);
+                $('#form-logo').trigger('reset');
+            }
+        });
+        e.preventDefault();
     });
 
 });

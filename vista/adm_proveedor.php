@@ -98,6 +98,7 @@
                         <input type="file" name="photo" class="input-group ml-5 ">
                         <input type="text" name="funcion" id="funcion">
                         <input type="text" name="id_logo_prov" id="id_logo_prov">
+                        <input type="text" name="avatar" id="avatar">
                     </div><!-- /.input-group -->
 
             </div><!-- /.modal-body -->
