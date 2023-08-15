@@ -23,11 +23,11 @@
 
                 <div class="card-body">
                     <!-- Mensajes de Alerta -->
-                    <div class="alert alert-success text-center" id="add" style="display:none;">
+                    <div class="alert alert-success text-center" id="add-prov" style="display:none;">
                         <span><i class="fas fa-thumbs-up m-1"></i> Proveedor registrado con exito</span>
                     </div>
 
-                    <div class="alert alert-danger text-center" id="noadd" style="display:none;">
+                    <div class="alert alert-danger text-center" id="noadd-prov" style="display:none;">
                         <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El proveedor ya existe</b></span>
                     </div>
                     <!-- Fin Mensajes de Alerta -->
