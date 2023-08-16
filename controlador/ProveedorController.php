@@ -79,3 +79,16 @@
         $id = $_POST["id"];
         $proveedor -> borrar($id);
     }
+
+    if ($_POST["funcion"] == "rellenar_proveedores") {
+        $proveedor -> rellenar_proveedores();
+        $json = array();
+        foreach ($proveedor -> objetos as $objeto) {
+            $json[] = array(
+                "id" => $objeto -> id_proveedor,
+                "nombre" => $objeto -> nombre
+            );
+        }
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
+    }

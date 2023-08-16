@@ -111,4 +111,14 @@
             }
         }
 
+        function rellenar_proveedores() {
+            $sql = "SELECT *
+                    FROM proveedor
+                    ORDER BY nombre ASC";
+                $query = $this -> acceso -> prepare($sql);
+                $query -> execute();
+                $this -> objetos = $query -> fetchAll();
+                return $this -> objetos;
+        }
+
     }

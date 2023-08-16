@@ -7,6 +7,7 @@ $(document).ready(function() {
     rellenar_laboratorios();
     rellenar_tipos();
     rellenar_presentaciones();
+    rellenar_proveedores();
     buscar_producto();
 
     function rellenar_laboratorios() {
@@ -156,7 +157,7 @@ $(document).ready(function() {
                                 <button class="editar btn btn-sm btn-success mr-1" type="button" data-toggle="modal" data-target="#crearproducto">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button class="lote btn btn-sm btn-primary mr-1">
+                                <button class="lote btn btn-sm btn-primary mr-1" type="button" data-toggle="modal" data-target="#crearlote">
                                     <i class="fas fa-plus-square"></i>
                                 </button>
                                 <button class="borrar btn btn-sm btn-danger mr-1">
@@ -305,5 +306,43 @@ $(document).ready(function() {
             }
         })
     }); 
+
+    $(document).on('click', '.lote', (e) => {
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id = $(elemento).attr('prodId');
+        const nombre = $(elemento).attr('prodNombre');
+        $('#id_lote_prod').val(id);
+        $('#nombre_producto_lote').html(nombre);
+    });
+
+    function rellenar_proveedores() {
+        funcion = 'rellenar_proveedores';
+        $.post('../controlador/ProveedorController.php', {funcion}, (response) => {
+            const proveedores = JSON.parse(response);
+            let template = ``;
+            proveedores.forEach(proveedor => {
+                template += `
+                    <option value="${proveedor.id}">${proveedor.nombre}</option>
+                `;
+            });
+            $('#proveedor').html(template);
+        });
+    }
+
+    $('#form-crear-lote').submit((e) => {
+        funcion = 'crear';
+        let id_producto = $('#id_lote_prod').val();
+        let proveedor = $('#proveedor').val();
+        let stock = $('#stock').val();
+        let vencimiento = $('#vencimiento').val();
+        $.post('../controlador/LoteController.php', {funcion, id_producto, proveedor, stock, vencimiento}, (response) => {
+            $('#add-lote').hide('slow');
+            $('#add-lote').show(1200);
+            $('#add-lote').hide(1700);
+            $('#form-crear-lote').trigger('reset');
+            buscar_producto();
+        });
+        e.preventDefault();
+    });
 
 });
