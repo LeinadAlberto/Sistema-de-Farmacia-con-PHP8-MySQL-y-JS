@@ -68,4 +68,18 @@
             $query -> execute(array(":id" => $id, ":nombre" => $nombre));
         } 
 
+        function borrar($id) {
+            $sql = "DELETE FROM proveedor 
+                    WHERE id_proveedor = :id";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id));
+
+            /* Verifica si se elimino el proveedor */
+            if (!empty($query -> execute(array(":id" => $id)))) {
+                echo "borrado";
+            } else {
+                echo "noborrado";
+            }
+        }
+
     }

@@ -15,7 +15,7 @@ $(document).ready(function() {
                 $('#add-prov').show(1200);
                 $('#add-prov').hide(1700);
                 $('#form-crear').trigger('reset');
-                /* buscar_lab(); */
+                buscar_prov();
             }
             if (response == "noadd") {
                 $('#noadd-prov').hide('slow');
@@ -73,7 +73,7 @@ $(document).ready(function() {
                                 <button class="editar btn btn-sm btn-success mr-1" title="Editar Proveedor" type="button" data-toggle="modal" data-target="#cambiologo">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button class="borrar btn btn-sm btn-danger mr-1" title="Eliminar Proveedor" type="button" data-toggle="modal" data-target="#cambiologo">
+                                <button class="borrar btn btn-sm btn-danger mr-1" title="Eliminar Proveedor">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -136,5 +136,59 @@ $(document).ready(function() {
         });
         e.preventDefault();
     });
+
+    $(document).on('click', '.borrar', (e) => {
+        funcion = 'borrar';
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id = $(elemento).attr('provId');
+        const nombre = $(elemento).attr('provNombre');
+        const avatar = $(elemento).attr('provAvatar');
+       
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false
+        })
+          
+        swalWithBootstrapButtons.fire({
+            title: 'Estas seguro de eliminar el proveedor ' + nombre + '?',
+            text: "¡No podrás revertir esto!",
+            imageUrl: '' + avatar + '',
+            imageWidth: 100,
+            imageHeight: 100, 
+            showCancelButton: true,
+            confirmButtonText: '¡Sí, bórralo!',
+            cancelButtonText: '¡No, cancela!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post('../controlador/ProveedorController.php', {id, funcion}, (response) => {
+                    /* edit = false;  */
+                    if (response == "borrado") {
+                        swalWithBootstrapButtons.fire(
+                            '¡Eliminado!',
+                            'El proveedor ' + nombre + ' ha sido eliminado.',
+                            'success'
+                        ) 
+                        buscar_prov();
+                    } else {
+                        swalWithBootstrapButtons.fire(
+                            '¡Proceso no realizado!',
+                            'El proveedor ' + nombre + ' no se pudo eliminar porque esta siendo usado en un Lote',
+                            'error'
+                        )
+                     }
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'El proveedor ' + nombre + ' no fue eliminado :)',
+                    'error'
+                )
+            }
+        })
+    }); 
 
 });
