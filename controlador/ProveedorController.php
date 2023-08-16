@@ -14,6 +14,16 @@
         $proveedor -> crear($nombre, $telefono, $correo, $direccion, $avatar);
     }
 
+    if($_POST["funcion"] == "editar") {
+        $id = $_POST["id"];
+        $nombre = $_POST["nombre"];
+        $telefono = $_POST["telefono"];
+        $correo = $_POST["correo"];
+        $direccion = $_POST["direccion"];
+
+        $proveedor -> editar($id, $nombre, $telefono, $correo, $direccion);
+    }
+
     if($_POST["funcion"] == "buscar") {
         $proveedor -> buscar();
         $json = array();

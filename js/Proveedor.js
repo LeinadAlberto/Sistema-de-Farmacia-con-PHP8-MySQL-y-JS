@@ -1,15 +1,21 @@
 $(document).ready(function() {
-
+    var edit = false;
     var funcion;
     buscar_prov();
 
     $('#form-crear').submit(e => {
+        let id = $('#id_edit_prov').val();
         let nombre = $('#nombre').val();
         let telefono = $('#telefono').val();
         let correo = $('#correo').val();
         let direccion = $('#direccion').val();
-        funcion = 'crear';
-        $.post('../controlador/ProveedorController.php', {funcion, nombre, telefono, correo, direccion}, (response) => {
+        if (edit == true) {
+            funcion = 'editar';
+        } else {
+            funcion = "crear";
+        }
+        $.post('../controlador/ProveedorController.php', {funcion, nombre, telefono, correo, direccion, id}, (response) => {
+            console.log(response);
             if (response == "add") {
                 $('#add-prov').hide('slow');
                 $('#add-prov').show(1200);
@@ -17,13 +23,20 @@ $(document).ready(function() {
                 $('#form-crear').trigger('reset');
                 buscar_prov();
             }
-            if (response == "noadd") {
+            if (response == "noadd" || response == "noedit") {
                 $('#noadd-prov').hide('slow');
                 $('#noadd-prov').show(1200);
                 $('#noadd-prov').hide(1700);
                 $('#form-crear').trigger('reset');
-                /* buscar_lab(); */
-            }  
+            }
+            if (response == "edit") {
+                $('#edit-prove').hide('slow');
+                $('#edit-prove').show(1200);
+                $('#edit-prove').hide(1700);
+                $('#form-crear').trigger('reset');
+                buscar_prov();
+            }
+            edit = false;
         });
         e.preventDefault();
     });
@@ -70,7 +83,7 @@ $(document).ready(function() {
                                 <button class="avatar btn btn-sm btn-info mr-1" title="Editar Logo" type="button" data-toggle="modal" data-target="#cambiologo">
                                     <i class="fas fa-image"></i>
                                 </button>
-                                <button class="editar btn btn-sm btn-success mr-1" title="Editar Proveedor" type="button" data-toggle="modal" data-target="#cambiologo">
+                                <button class="editar btn btn-sm btn-success mr-1" title="Editar Proveedor" type="button" data-toggle="modal" data-target="#crearproveedor">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
                                 <button class="borrar btn btn-sm btn-danger mr-1" title="Eliminar Proveedor">
@@ -107,6 +120,23 @@ $(document).ready(function() {
         $('#funcion').val(funcion);
         $('#id_logo_prov').val(id);
         $('#avatar').val(avatar);
+    });
+
+    $(document).on('click', '.editar', (e) => {
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id = $(elemento).attr('provId');
+        const nombre = $(elemento).attr('provNombre');
+        const telefono = $(elemento).attr('provTelefono');
+        const correo = $(elemento).attr('provCorreo');
+        const direccion = $(elemento).attr('provDireccion');
+
+        $('#id_edit_prov').val(id);
+        $('#nombre').val(nombre);
+        $('#telefono').val(telefono);
+        $('#correo').val(correo);
+        $('#direccion').val(direccion);
+
+        edit = true;
     });
 
     $('#form-logo').submit( e => {
@@ -165,7 +195,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.post('../controlador/ProveedorController.php', {id, funcion}, (response) => {
-                    /* edit = false;  */
+                    edit = false; 
                     if (response == "borrado") {
                         swalWithBootstrapButtons.fire(
                             '¡Eliminado!',

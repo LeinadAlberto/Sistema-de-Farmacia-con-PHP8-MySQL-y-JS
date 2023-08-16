@@ -30,6 +30,10 @@
                     <div class="alert alert-danger text-center" id="noadd-prov" style="display:none;">
                         <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El proveedor ya existe</b></span>
                     </div>
+
+                    <div class="alert alert-success text-center" id="edit-prove" style="display:none;">
+                        <span><i class="fas fa-thumbs-up m-1"></i> Proveedor editado con exito</span>
+                    </div>
                     <!-- Fin Mensajes de Alerta -->
 
                     <form id="form-crear">
@@ -96,9 +100,9 @@
                 <form id="form-logo" enctype="multipart/form-data">
                     <div class="input-group ml-5 mb-3 mt-3">
                         <input type="file" name="photo" class="input-group ml-5 ">
-                        <input type="text" name="funcion" id="funcion">
-                        <input type="text" name="id_logo_prov" id="id_logo_prov">
-                        <input type="text" name="avatar" id="avatar">
+                        <input type="hidden" name="funcion" id="funcion">
+                        <input type="hidden" name="id_logo_prov" id="id_logo_prov">
+                        <input type="hidden" name="avatar" id="avatar">
                     </div><!-- /.input-group -->
 
             </div><!-- /.modal-body -->
