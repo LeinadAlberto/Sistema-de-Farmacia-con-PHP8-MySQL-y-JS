@@ -9,16 +9,24 @@ $(document).ready(function() {
             let template = ``;
             lotes.forEach(lote => {
                 template += `
-                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                    <div class="card bg-light">
-                        <div class="card-header text-muted border-bottom-0 mb-2">
-                            <i class="text-info fas fa-lg fa-cubes mr-1"></i>${lote.stock}
+                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">`;
+                    if (lote.estado == 'light') {
+                        template += `<div class="card bg-light">`;
+                    }
+                    if (lote.estado == 'danger') {
+                        template += `<div class="card bg-danger">`;
+                    }
+                    if (lote.estado == 'warning') {
+                        template += `<div class="card bg-warning">`;
+                    }
+                template += `<div class="card-header border-bottom-0 mb-2">
+                            <i class="fas fa-lg fa-cubes mr-1"></i>${lote.stock}
                         </div>
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-7">
                                     <h2 class="lead"><b>${lote.nombre}</b></h2> 
-                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                    <ul class="ml-4 mb-0 fa-ul">
                                         <hr class="mt-1 mb-1 bg-info">
                                         <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-mortar-pestle mr-1"></i></span> <b>Concentración:</b> ${lote.concentracion}</li>
                                         <hr class="mt-1 mb-1 bg-info">
@@ -34,6 +42,12 @@ $(document).ready(function() {
                                         <hr class="mt-1 mb-1 bg-info">
                                         <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-truck mr-1"></i></span> <b>Proveedor:</b> ${lote.proveedor}</li>
                                         <hr class="mt-1 mb-1 bg-info">
+                                        <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-calendar-alt mr-1"></i></span> <b>Mes:</b> ${lote.mes}</li>
+                                        <hr class="mt-1 mb-1 bg-info">
+                                        <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-calendar-day mr-1"></i></span> <b>Dia:</b> ${lote.dia}</li>
+                                        <hr class="mt-1 mb-1 bg-info">
+                                        <li class="small"><span class="fa-li"><i class="text-info fas fa-lg fa-calendar-day mr-1"></i></span> <b>Dia:</b> ${lote.estado}</li>
+                                        <hr class="mt-1 mb-1 bg-info">
                                     </ul>
                                 </div>
                                 <div class="col-5 text-center">
@@ -43,14 +57,8 @@ $(document).ready(function() {
                         </div>
                         <div class="card-footer">
                             <div class="text-right">
-                                <button class="avatar btn btn-sm bg-teal mr-1" type="button" data-toggle="modal" data-target="#cambiologo">
-                                    <i class="fas fa-image"></i>
-                                </button>
                                 <button class="editar btn btn-sm btn-success mr-1" type="button" data-toggle="modal" data-target="#crearproducto">
                                     <i class="fas fa-pencil-alt"></i>
-                                </button>
-                                <button class="lote btn btn-sm btn-primary mr-1" type="button" data-toggle="modal" data-target="#crearlote">
-                                    <i class="fas fa-plus-square"></i>
                                 </button>
                                 <button class="borrar btn btn-sm btn-danger mr-1">
                                     <i class="fas fa-trash-alt"></i>
