@@ -1,9 +1,7 @@
 $(document).ready(function() {
     var funcion = '';
     var edit = false;
-    ''
     $('.select2').select2();
-
     rellenar_laboratorios();
     rellenar_tipos();
     rellenar_presentaciones();
