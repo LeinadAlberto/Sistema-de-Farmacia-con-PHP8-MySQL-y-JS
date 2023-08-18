@@ -9,6 +9,50 @@
         
 <?php include_once "layouts/nav.php"; ?>
 
+<!-- Modal para Editar Lote -->
+<div class="modal fade" id="editarlote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Lote</h3>
+                    <button data-dismiss="modal" aria-label="close" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div><!-- /.card-header -->
+
+                <div class="card-body">
+                    <!-- Mensajes de Alerta -->
+                    <div class="alert alert-success text-center" id="edit-lote" style="display:none;">
+                        <span><i class="fas fa-thumbs-up m-1"></i> Lote editado con exito</span>
+                    </div>
+                    <!-- Fin Mensajes de Alerta -->
+
+                    <form id="form-editar-lote">
+                        <div class="form-group">
+                            <label>Código Lote: </label>
+                            <span id="codigo_lote" class="ml-2 text-info"></span>
+                        </div>
+                        <!-- Stock -->
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input id="stock" type="number" class="form-control" placeholder="Ingrese stock" required>
+                        </div>
+                        <!-- ID del Producto -->
+                        <input type="text" id="id_lote_prod">
+                    
+                </div><!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
+                    </form>
+                </div><!-- /.card-footer -->
+            </div><!-- /.card -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     

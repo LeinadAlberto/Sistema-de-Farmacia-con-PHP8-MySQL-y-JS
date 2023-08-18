@@ -55,3 +55,14 @@
         $jsonstring = json_encode($json);
         echo $jsonstring; 
     }
+
+    if ($_POST["funcion"] == "editar") {
+        $id_lote = $_POST["id"];
+        $stock = $_POST["stock"];
+        $lote -> editar($id_lote, $stock);
+    }
+
+    if ($_POST["funcion"] == "borrar") {
+        $id = $_POST["id"];
+        $lote -> borrar($id);
+    }
