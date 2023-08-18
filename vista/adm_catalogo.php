@@ -10,51 +10,85 @@
 
         <?php include_once "layouts/nav.php"; ?>
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
+                    <div class="row">
                         <div class="col-sm-6">
-                            <h1>Blank Page</h1>
+                            <h1>Catálogo</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Blank Page</li>
+                                <li class="breadcrumb-item active">Catálogo</li>
                             </ol>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
+            </section><!-- /.content-header -->
+
+            <section>
+                <div class="container-fluid">
+                    <card class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Lotes en riesgo</h3>
+                        </div><!-- /.card-header -->
+
+                        <div class="card-body p-0 table-responsive">
+                            <table class="table table-hover text-nowrap">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>Cod</th>
+                                        <th>Producto</th>
+                                        <th>Stock</th>
+                                        <th>Laboratorio</th>
+                                        <th>Presentación</th>
+                                        <th>Proveedor</th>
+                                        <th>Mes</th>
+                                        <th>Día</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lotes" class="table-active">
+
+                                </tbody>
+                            </table>
+                        </div><!-- /.card-body -->
+
+                        <div class="card-footer">
+
+                        </div><!-- /.card-footer -->
+                    </card>
+                </div>
             </section>
 
-            <!-- Main content -->
-            <section class="content">
+            <section>
+                <div class="container-fluid">
+                    <card class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title mb-2">Buscar producto</h3>
+                            <div class="input-group">
+                                <input id="buscar-producto" type="text" class="form-control float-left" placeholder="Ingrese nombre del producto...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div> 
+                        </div><!-- /.card-header -->
 
-                <!-- Default box -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Title</h3>
+                        <div class="card-body">
+                            <div id="productos" class="row d-flex align-items-stretch">
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        Start creating your amazing application!
-                    </div><!-- /.card-body -->
-                    <div class="card-footer">
-                        Footer
-                    </div><!-- /.card-footer-->
-                </div><!-- /.card -->
+                            </div>
+                        </div><!-- /.card-body -->
 
-            </section><!-- /.content -->
+                        <div class="card-footer">
+
+                        </div><!-- /.card-footer -->
+                    </card>
+                </div>
+            </section>
+
         </div><!-- /.content-wrapper -->
 
 <?php 
@@ -66,3 +100,5 @@
         
     }  
 ?>
+
+<script src="../js/Catalogo.js"></script>
