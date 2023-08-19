@@ -32,6 +32,11 @@
                     <card class="card card-danger">
                         <div class="card-header">
                             <h3 class="card-title">Lotes en riesgo</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
                         </div><!-- /.card-header -->
 
                         <div class="card-body p-0 table-responsive">
@@ -102,3 +107,4 @@
 ?>
 
 <script src="../js/Catalogo.js"></script>
+<script src="../js/Carrito.js"></script>

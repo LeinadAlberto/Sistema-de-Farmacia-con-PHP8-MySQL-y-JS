@@ -242,10 +242,7 @@ $(document).ready(function() {
         $('#laboratorio').val(laboratorio).trigger('change');
         $('#tipo').val(tipo).trigger('change');
         $('#presentacion').val(presentacion).trigger('change');
-
         edit = true;
-
-        console.log(edit);
     });
 
     $(document).on('click', '.borrar', (e) => {

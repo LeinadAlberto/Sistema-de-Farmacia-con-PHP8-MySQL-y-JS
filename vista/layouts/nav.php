@@ -32,6 +32,29 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
+                <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
+                    <img style="cursor: pointer;" src="../img/carrito.png" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown-menu">
+                        <table class="table table-hover text-nowrap p-0">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Concentración</th>
+                                    <th>Adicional</th>
+                                    <th>Precio</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista">
+
+                            </tbody>
+                        </table>
+                        <a href="#" class="btn btn-danger btn-block">Procesar Compra</a>
+                        <a href="#" class="btn btn-primary btn-block">Vaciar Carrito</a>
+                    </div>
+                </li>
+
             </ul>
 
             <!-- Right navbar links -->
