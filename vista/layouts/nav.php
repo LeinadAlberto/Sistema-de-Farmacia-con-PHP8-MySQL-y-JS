@@ -1,6 +1,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!-- CSS para corregir el diseño del carrito -->
+    <link rel="stylesheet" href="../css/main.css">
     <!-- Select2 - CSS - Versión 4.1.0 -->
     <link rel="stylesheet" href="../css/select2.css">
     <!-- SweetAlert2 - CSS -->
@@ -35,7 +36,7 @@
                 <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
                     <img style="cursor: pointer;" src="../img/carrito.png" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
                     <div class="dropdown-menu">
-                        <table class="table table-hover text-nowrap p-0">
+                        <table class="carro table table-hover text-nowrap p-0">
                             <thead class="table-success">
                                 <tr>
                                     <th>Código</th>
@@ -51,7 +52,7 @@
                             </tbody>
                         </table>
                         <a href="#" class="btn btn-danger btn-block">Procesar Compra</a>
-                        <a href="#" class="btn btn-primary btn-block">Vaciar Carrito</a>
+                        <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
                     </div>
                 </li>
 
