@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    Contar_productos();
     RecuperarLS_carrito();
 
     $(document).on('click', '.agregar-carrito', (e) => {
@@ -55,6 +55,7 @@ $(document).ready(function() {
             $('#lista').append(template);
             /* Función que permitira agregar un producto al Local Storage */
             AgregarLS(producto);
+            Contar_productos();
         }
     });
 
@@ -63,11 +64,13 @@ $(document).ready(function() {
         const id = $(elemento).attr('prodId');
         elemento.remove();
         Eliminar_producto_LS(id);
+        Contar_productos();
     });
 
     $(document).on('click', '#vaciar-carrito', (e) => {
         $('#lista').empty();
         EliminarLS();
+        Contar_productos();
     });
 
     function RecuperarLS() {
@@ -118,5 +121,15 @@ $(document).ready(function() {
 
     function EliminarLS() {
         localStorage.clear();
+    }
+
+    function Contar_productos() {
+        let productos;
+        let contador = 0;
+        productos = RecuperarLS();
+        productos.forEach(producto => {
+            contador = contador + 1;
+        });
+        $('#contador').html(contador);
     }
 });

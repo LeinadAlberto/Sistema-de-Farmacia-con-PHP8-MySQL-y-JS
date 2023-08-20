@@ -34,7 +34,8 @@
                     <a href="#" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
-                    <img style="cursor: pointer;" src="../img/carrito.png" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <img style="cursor: pointer;" src="../img/carrito.png" class="imagen-carrito nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <span id="contador" class="contador badge badge-danger"></span>
                     <div class="dropdown-menu">
                         <table class="carro table table-hover text-nowrap p-0">
                             <thead class="table-success">
