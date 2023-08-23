@@ -11,6 +11,7 @@ $(document).ready(function() {
             productos.forEach(producto => {
                 template += `
                     <div prodId="${producto.id}" 
+                        prodStock="${producto.stock}"
                         prodNombre="${producto.nombre}" 
                         prodConcentracion="${producto.concentracion}" 
                         prodAdicional="${producto.adicional}" 

@@ -1,5 +1,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS de la vista Administrar Compra -->
+    <link rel="stylesheet" href="../css/compra.css">
     <!-- CSS para corregir el diseño del carrito -->
     <link rel="stylesheet" href="../css/main.css">
     <!-- Select2 - CSS - Versión 4.1.0 -->
@@ -52,7 +54,7 @@
 
                             </tbody>
                         </table>
-                        <a href="#" class="btn btn-danger btn-block">Procesar Compra</a>
+                        <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
                         <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
                     </div>
                 </li>
