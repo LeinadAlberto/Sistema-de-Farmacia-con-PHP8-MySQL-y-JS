@@ -183,4 +183,32 @@
             return $this -> objetos;
         }
 
+        /* Obtiene los datos de un producto mediante su id */
+        function buscar_id($id) {
+            
+            $sql = "SELECT 
+                        id_producto, 
+                        producto.nombre as nombre,
+                        concentracion,
+                        adicional,
+                        precio,
+                        laboratorio.nombre as laboratorio,
+                        tipo_producto.nombre as tipo,
+                        presentacion.nombre as presentacion,
+                        producto.avatar as avatar,
+                        prod_lab,
+                        prod_tip_prod,
+                        prod_present
+                    FROM producto
+                    JOIN laboratorio ON prod_lab = id_laboratorio
+                    JOIN tipo_producto ON prod_tip_prod = id_tip_prod
+                    JOIN presentacion ON prod_present = id_presentacion
+                    WHERE id_producto = :id";
+            $query = $this -> acceso -> prepare($sql);
+            $query -> execute(array(":id" => $id));
+            $query -> execute();
+            $this -> objetos = $query -> fetchAll();
+            return $this -> objetos;
+        }
+        
     }

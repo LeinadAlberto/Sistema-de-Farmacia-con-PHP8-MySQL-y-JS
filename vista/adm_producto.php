@@ -153,7 +153,7 @@
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio</label>
-                            <input id="precio" type="number" class="form-control" value="1" placeholder="Ingrese precio" required>
+                            <input id="precio" type="number" step="any" class="form-control" value="1" placeholder="Ingrese precio" required>
                         </div>
                         <div class="form-group">
                             <label for="laboratorio">Laboratorio</label>

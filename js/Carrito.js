@@ -100,21 +100,31 @@ $(document).ready(function() {
         localStorage.setItem('productos', JSON.stringify(productos));
     }
 
+    /* Cuando se refresca la página recupera los datos del Local Storage
+    y lo imprime en el carrito */
     function RecuperarLS_carrito() {
         let productos;
+        let id_producto;
         productos = RecuperarLS();
+        funcion = 'buscar_id';
         productos.forEach(producto => {
-            template = `
-                <tr prodId="${producto.id}">
-                    <td>${producto.id}</td>
-                    <td>${producto.nombre}</td>
-                    <td>${producto.concentracion}</td>
-                    <td>${producto.adicional}</td>
-                    <td>${producto.precio}</td>
-                    <td><button class="borrar-producto btn btn-danger"><i class="fas fa-times-circle"></i></button></td>
-                </tr>
-            `;
-            $('#lista').append(template);
+            id_producto = producto.id;
+            $.post('../controlador/ProductoController.php', {funcion, id_producto}, (response) => {
+                let template_carrito = '';
+                let json = JSON.parse(response);
+                console.log(json);
+                template_carrito = `
+                    <tr prodId="${json.id}">
+                        <td>${json.id}</td>
+                        <td>${json.nombre}</td>
+                        <td>${json.concentracion}</td>
+                        <td>${json.adicional}</td>
+                        <td>${json.precio}</td>
+                        <td><button class="borrar-producto btn btn-danger"><i class="fas fa-times-circle"></i></button></td>
+                    </tr>
+                `;
+                $('#lista').append(template_carrito);
+            });
         });
     }
 
@@ -160,28 +170,36 @@ $(document).ready(function() {
     /* Eventos y Funciones para Administrar Compra */
     function RecuperarLS_carrito_compra() {
         let productos;
+        let id_producto;
         productos = RecuperarLS();
+        funcion = 'buscar_id';
         productos.forEach(producto => {
-            template = `
-                <tr prodId="${producto.id}">
-                    <td>${producto.nombre}</td>
-                    <td>${producto.stock}</td>
-                    <td>${producto.precio}</td>
-                    <td>${producto.concentracion}</td>
-                    <td>${producto.adicional}</td>
-                    <td>${producto.laboratorio}</td>
-                    <td>${producto.presentacion}</td>
-                    <td>
-                        <input type="number" min="1" class="form-control cantidad_producto" value="${producto.cantidad}">
-                    </td>
-                    <td class="subtotales">
-                        <h5>${producto.precio * producto.cantidad}</h5>
-                    </td>
+            id_producto = producto.id;
+            $.post('../controlador/ProductoController.php', {funcion, id_producto}, (response) => {
+                let template_compra = '';
+                let json = JSON.parse(response);
+                console.log(json);
+                template_compra = `
+                    <tr prodId="${producto.id}">
+                        <td>${json.nombre}</td>
+                        <td>${json.stock}</td>
+                        <td>${json.precio}</td>
+                        <td>${json.concentracion}</td>
+                        <td>${json.adicional}</td>
+                        <td>${json.laboratorio}</td>
+                        <td>${json.presentacion}</td>
+                        <td>
+                            <input type="number" min="1" class="form-control cantidad_producto" value="${producto.cantidad}">
+                        </td>
+                        <td class="subtotales">
+                            <h5>${json.precio * producto.cantidad}</h5>
+                        </td>
 
-                    <td><button class="borrar-producto btn btn-danger"><i class="fas fa-times-circle"></i></button></td>
-                </tr>
-            `;
-            $('#lista-compra').append(template);
+                        <td><button class="borrar-producto btn btn-danger"><i class="fas fa-times-circle"></i></button></td>
+                    </tr>
+                `;
+                $('#lista-compra').append(template_compra);
+            });
         });
     }
 
