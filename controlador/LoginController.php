@@ -31,16 +31,16 @@
         
     } else {
         /* Si no existe sesión, verificamos si las credeciales son correctas. */
-        $usuario -> loguearse($user, $pass);
+        $usuario->loguearse($user, $pass);
         /* Si se loguea correctamente creamos variables de sesión */
-        if (!empty($usuario -> objetos)) {
+        if (!empty($usuario->objetos)) {
         
-            foreach ($usuario -> objetos as $objeto) { 
+            foreach ($usuario->objetos as $objeto) { 
                 /* print_r($objeto); */
                 /* Creando Variables de Sesión */
-                $_SESSION["usuario"] = $objeto -> id_usuario;
-                $_SESSION["nombre_us"] = $objeto -> nombre_us;
-                $_SESSION["us_tipo"] = $objeto -> us_tipo;
+                $_SESSION["usuario"] = $objeto->id_usuario;
+                $_SESSION["nombre_us"] = $objeto->nombre_us;
+                $_SESSION["us_tipo"] = $objeto->us_tipo;
             }
 
             switch ($_SESSION["us_tipo"]) { 

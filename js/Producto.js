@@ -1,56 +1,89 @@
 $(document).ready(function() {
+
     var funcion = '';
+
     var edit = false;
+
+    /* Sentencia que permite inicializar el uso de la libreria select2 */
     $('.select2').select2();
+
     rellenar_laboratorios();
+
     rellenar_tipos();
+
     rellenar_presentaciones();
+
     rellenar_proveedores();
+
     buscar_producto();
 
     function rellenar_laboratorios() {
+
         funcion = 'rellenar_laboratorios';
+
         $.post('../controlador/LaboratorioController.php', {funcion}, (response) => {
+
             const laboratorios = JSON.parse(response);
+
             let template = ``;
+
             laboratorios.forEach(laboratorio => {
                 template += `
-                    <option value="${laboratorio.id}">${laboratorio.nombre}</option>
+                    <option value="${laboratorio.id}">
+                        ${laboratorio.nombre}
+                    </option>
                 `;
             });
+
             $('#laboratorio').html(template);
+
         });
     }
 
     function rellenar_tipos() {
+
         funcion = 'rellenar_tipos';
+
         $.post('../controlador/TipoController.php', {funcion}, (response) => {
+
             const tipos = JSON.parse(response);
+
             let template = ``;
+
             tipos.forEach(tipo => {
                 template += `
                     <option value='${tipo.id}'>${tipo.nombre}</option>
                 `;
             });
+
             $('#tipo').html(template);
+
         });
     }
 
     function rellenar_presentaciones() {
+
         funcion = 'rellenar_presentaciones';
+
         $.post('../controlador/PresentacionController.php', {funcion}, (response) => {
+
             const presentaciones = JSON.parse(response);
+
             let template = ``;
+
             presentaciones.forEach(presentacion => {
                 template += `
                     <option value="${presentacion.id}">${presentacion.nombre}</option>
                 `;
             });
+
             $('#presentacion').html(template);
+
         });
     }
 
     $('#form-crear-producto').submit(e => {
+
         let id = $('#id_edit_prod').val();
         let nombre = $('#nombre_producto').val();
         let concentracion = $('#concentracion').val();
@@ -61,15 +94,19 @@ $(document).ready(function() {
         let presentacion = $('#presentacion').val();
 
         if (edit == true) {
+
             funcion = 'editar';
-            /* console.log("Hola estoy en editar"); */
+
         } else {
+
             funcion = 'crear';
-            /* console.log("Hola estoy en crear"); */
+
         }
 
-        $.post('../controlador/ProductoController.php', {nombre, concentracion, adicional, precio, laboratorio, tipo, presentacion, funcion, id}, (response) => {
-            console.log(response);
+        $.post('../controlador/ProductoController.php', 
+                {nombre, concentracion, adicional, precio, laboratorio, tipo, presentacion, funcion, id}, 
+                (response) => {
+
             if (response == 'add') {
                 $('#add').hide('slow');
                 $('#add').show(1200);
@@ -77,6 +114,7 @@ $(document).ready(function() {
                 $('#form-crear-producto').trigger('reset');
                 buscar_producto();
             }  
+
             if (response == 'edit') {
                 $('#edit_prod').hide('slow');
                 $('#edit_prod').show(1200);
@@ -84,30 +122,43 @@ $(document).ready(function() {
                 $('#form-crear-producto').trigger('reset');
                 buscar_producto();
             }  
+
             if (response == 'noadd') {
                 $('#noadd').hide('slow');
                 $('#noadd').show(1500);
                 $('#noadd').hide(1700);
                 $('#form-crear-producto').trigger('reset');
             }
+
             if (response == 'noedit') {
                 $('#noadd').hide('slow');
                 $('#noadd').show(2500);
                 $('#noadd').hide(1700);
                 $('#form-crear-producto').trigger('reset');
             }
+
             edit = false;
+
         });
 
         e.preventDefault();    
+
     });
 
     function buscar_producto(consulta) {
+
         funcion = "buscar";
+
         $.post("../controlador/ProductoController.php", {consulta, funcion}, (response) => {
+
+            /* console.log(response); */
+
             const productos = JSON.parse(response);
-            let template = ``;
+
+            let template = ``; 
+
             productos.forEach(producto => {
+
                 template += `
                     <div prodId="${producto.id}" 
                         prodNombre="${producto.nombre}" 
@@ -167,45 +218,69 @@ $(document).ready(function() {
                     </div>
                 `;
             });
-            $('#productos').html(template);
+            
+            $('#productos').html(template); 
             
         });
     }
 
     $(document).on('keyup', '#buscar-producto', function() {
+
         let valor = $(this).val(); /* Almacena dentro la variable valor los datos que se ingresan dentro #buscar. */
-        console.log(valor);
+        
         if (valor != '') {
+
             buscar_producto(valor);
+
         } else {
+
             buscar_producto();
+
         } 
+
     });
 
     $(document).on('click', '.avatar', (e) => {
+
         funcion = 'cambiar_avatar';
+
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+
         const id = $(elemento).attr('prodId');
+
         const avatar = $(elemento).attr('prodAvatar');
+
         const nombre = $(elemento).attr('prodNombre');
+
         $('#funcion').val(funcion);
+
         $('#id_logo_prod').val(id);
+
         $('#avatar').val(avatar);
+
         $('#logoactual').attr('src', avatar);
+
         $('#nombre_logo').html(nombre);
+
     });
 
     $('#form-logo').submit( e => {
+
         let formData = new FormData($('#form-logo')[0]);
+
         $.ajax({
+
             url: "../controlador/ProductoController.php",
             type: "post",
             data: formData,
             cache: false,
             processData: false,
             contentType: false
+
         }).done(function(response) {
+
             const json = JSON.parse(response);
+
             if (json.alert == 'edit') {
                 $('#logoactual').attr('src', json.ruta);
                 $('#edit').hide('slow');
@@ -220,11 +295,15 @@ $(document).ready(function() {
                 $('#form-logo').trigger('reset');
             }
         });
+
         e.preventDefault();
+
     });
 
     $(document).on('click', '.editar', (e) => {
+
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+
         const id = $(elemento).attr('prodId');
         const nombre = $(elemento).attr('prodNombre');
         const concentracion = $(elemento).attr('prodConcentracion');
@@ -233,7 +312,7 @@ $(document).ready(function() {
         const laboratorio = $(elemento).attr('prodLaboratorio');
         const tipo = $(elemento).attr('prodTipo');
         const presentacion = $(elemento).attr('prodPresentacion');
-        /* console.log(`${id} - ${nombre} - ${concentracion} - ${adicional} - ${precio} - ${laboratorio} - ${tipo} - ${presentacion}`); */
+
         $('#id_edit_prod').val(id);
         $('#nombre_producto').val(nombre);
         $('#concentracion').val(concentracion);
@@ -242,18 +321,20 @@ $(document).ready(function() {
         $('#laboratorio').val(laboratorio).trigger('change');
         $('#tipo').val(tipo).trigger('change');
         $('#presentacion').val(presentacion).trigger('change');
+
         edit = true;
+
     });
 
     $(document).on('click', '.borrar', (e) => {
+
         funcion = 'borrar';
+
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
-        /* console.log(elemento); */
+
         const id = $(elemento).attr('prodId');
         const nombre = $(elemento).attr('prodNombre');
         const avatar = $(elemento).attr('prodAvatar');
-       
-        console.log(`${id} - ${nombre} - ${avatar}`);
 
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -274,9 +355,13 @@ $(document).ready(function() {
             cancelButtonText: '¡No, cancela!',
             reverseButtons: true
         }).then((result) => {
+            
             if (result.isConfirmed) {
+
                 $.post('../controlador/ProductoController.php', {id, funcion}, (response) => {
+                    
                     edit = false; 
+                    
                     if (response == "borrado") {
                         swalWithBootstrapButtons.fire(
                             '¡Eliminado!',
@@ -303,41 +388,65 @@ $(document).ready(function() {
     }); 
 
     $(document).on('click', '.lote', (e) => {
+
         const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+
         const id = $(elemento).attr('prodId');
         const nombre = $(elemento).attr('prodNombre');
+
         $('#id_lote_prod').val(id);
         $('#nombre_producto_lote').html(nombre);
+
     });
 
     function rellenar_proveedores() {
+
         funcion = 'rellenar_proveedores';
+
         $.post('../controlador/ProveedorController.php', {funcion}, (response) => {
+
             const proveedores = JSON.parse(response);
+
             let template = ``;
+
             proveedores.forEach(proveedor => {
                 template += `
                     <option value="${proveedor.id}">${proveedor.nombre}</option>
                 `;
             });
+
             $('#proveedor').html(template);
+
         });
+        
     }
 
+    /* Evento que permite enviar una petición al controlador de Lote, para crear un nuevo lote. */
     $('#form-crear-lote').submit((e) => {
+
         funcion = 'crear';
+
         let id_producto = $('#id_lote_prod').val();
+
         let proveedor = $('#proveedor').val();
+
         let stock = $('#stock').val();
+        
         let vencimiento = $('#vencimiento').val();
+
         $.post('../controlador/LoteController.php', {funcion, id_producto, proveedor, stock, vencimiento}, (response) => {
+            
             $('#add-lote').hide('slow');
             $('#add-lote').show(1200);
             $('#add-lote').hide(1700);
             $('#form-crear-lote').trigger('reset');
+
             buscar_producto();
+
         });
+
         e.preventDefault();
+
     });
 
 });

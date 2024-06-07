@@ -5,6 +5,7 @@
     $usuario = new Usuario();
 
     session_start();
+
     $id_usuario = $_SESSION["usuario"];
 
     if ($_POST["funcion"] == "buscar_usuario") {
@@ -37,7 +38,7 @@
         $json = array();
         $id_usuario = $_POST["id_usuario"]; // Variable enviada desde el js Usuario.js mediante AJAX
         $usuario -> obtener_datos($id_usuario);
-        foreach ($usuario -> objetos as $objeto) {
+        foreach ($usuario->objetos as $objeto) {
             $json[] = array(
                 "telefono" => $objeto -> telefono_us,
                 "residencia" => $objeto -> residencia_us,
@@ -64,7 +65,8 @@
         echo "editado";
     }
 
-    if ($_POST["funcion"] == "cambiar_contra") {
+    /* Proceso para cambiar nueva contraseña al usuario logueado. */
+    if ($_POST["funcion"] == "cambiar_contra") {    
         $id_usuario = $_POST["id_usuario"]; 
         $oldpass = $_POST["oldpass"];
         $newpass = $_POST["newpass"];
@@ -103,7 +105,8 @@
         }   
     } 
 
-    /* Respuestas para Gestion Usuario */
+    /* ====== Respuestas para Gestion Usuario ====== */
+
     if ($_POST["funcion"] == "buscar_usuarios_adm") {
         $json = array();
         $fecha_actual = new DateTime();
@@ -140,7 +143,7 @@
         $dni = $_POST["dni"];
         $pass = $_POST["pass"];
         $tipo = 2;
-        $avatar = 'default.png';
+        $avatar = "default.png";
         $usuario -> crear($nombre, $apellido, $edad, $dni, $pass, $tipo, $avatar);
     }
 

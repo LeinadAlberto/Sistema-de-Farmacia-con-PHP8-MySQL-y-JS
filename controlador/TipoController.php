@@ -33,15 +33,22 @@
         $tipo -> borrar($id);
     }
 
+    /* Petición que se realiza desde Producto.js para rellenar un select con nombres de tipo de producto */
     if ($_POST["funcion"] == "rellenar_tipos") {
+
         $tipo -> rellenar_tipos();
+
         $json = array();
+
         foreach ($tipo -> objetos as $objeto) {
             $json[] = array(
                 "id" => $objeto -> id_tip_prod,
                 "nombre" => $objeto -> nombre
             );
         }
+
         $jsonstring = json_encode($json);
+
         echo $jsonstring;
+        
     }

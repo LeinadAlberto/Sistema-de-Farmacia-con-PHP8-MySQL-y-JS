@@ -75,9 +75,12 @@
         } 
 
         function borrar($id) {
+
             $sql = "DELETE FROM laboratorio 
                     WHERE id_laboratorio = :id";
+
             $query = $this -> acceso -> prepare($sql);
+
             $query -> execute(array(":id" => $id));
 
             /* Verifica si se elimino el registro */
@@ -89,22 +92,33 @@
         }
 
         function editar($id_editado, $nombre) {
+
             $sql = "UPDATE laboratorio
                     SET nombre = :nombre 
                     WHERE id_laboratorio = :id";
+
             $query = $this -> acceso -> prepare($sql);
+
             $query -> execute(array(":id" => $id_editado, ":nombre" => $nombre));
+
             echo "edit";
+            
         }
 
+        /* Función que retorna todos los nombres de laboratorio de la tabla laboratorio. */
         function rellenar_laboratorios() {
+
             $sql = "SELECT *
                     FROM laboratorio
-                    ORDER BY nombre ASC";
-                $query = $this -> acceso -> prepare($sql);
-                $query -> execute();
-                $this -> objetos = $query -> fetchAll();
-                return $this -> objetos;
-        }
+                    ORDER BY nombre ASC"; /* Ordena por nombre y de forma ascendente */
 
+            $query = $this -> acceso -> prepare($sql);
+
+            $query -> execute();
+
+            $this -> objetos = $query -> fetchAll();
+
+            return $this -> objetos;
+            
+        }
     }

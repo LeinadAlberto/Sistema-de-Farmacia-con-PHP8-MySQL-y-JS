@@ -24,7 +24,6 @@
     session_start();
 
     if (!empty($_SESSION["us_tipo"])) { 
-        
         /* Si existe una sesión iniciada lo redirigimos al controlador */
         header("Location: controlador/LoginController.php");
     } else { 

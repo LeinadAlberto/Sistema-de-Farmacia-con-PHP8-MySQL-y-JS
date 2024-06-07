@@ -1,5 +1,7 @@
 <?php 
+
     session_start();
+    
     if ($_SESSION["us_tipo"] == 3) {
 
         include_once "layouts/header.php";
@@ -21,14 +23,15 @@
                     </button>
                 </div><!-- /.card-header -->
 
-                <div class="card-body">
-                    <!-- Mensajes de Alerta -->
-                    <div class="alert alert-success text-center" id="edit-lote" style="display:none;">
-                        <span><i class="fas fa-thumbs-up m-1"></i> Lote editado con exito</span>
-                    </div>
-                    <!-- Fin Mensajes de Alerta -->
+                <form id="form-editar-lote">
+                    <div class="card-body">
+                        <!-- Mensajes de Alerta -->
+                        <div class="alert alert-success text-center" id="edit-lote" style="display:none;">
+                            <span><i class="fas fa-thumbs-up m-1"></i> Lote editado con exito</span>
+                        </div>
+                        <!-- Fin Mensajes de Alerta -->
 
-                    <form id="form-editar-lote">
+                        <!-- Código Lote -->
                         <div class="form-group">
                             <label>Código Lote: </label>
                             <span id="codigo_lote" class="ml-2 text-info"></span>
@@ -38,16 +41,15 @@
                             <label for="stock">Stock</label>
                             <input id="stock" type="number" class="form-control" placeholder="Ingrese stock" required>
                         </div>
-                        <!-- ID del Producto -->
-                        <input type="text" id="id_lote_prod">
-                    
-                </div><!-- /.card-body -->
+                        <!-- ID del Lote Producto -->
+                        <input type="hidden" id="id_lote_prod">
+                    </div><!-- /.card-body -->
 
-                <div class="card-footer">
-                    <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
-                    </form>
-                </div><!-- /.card-footer -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn bg-gradient-info float-right m-1">Guardar</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
+                    </div><!-- /.card-footer -->
+                </form>
             </div><!-- /.card -->
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -75,7 +77,7 @@
 
     <section>
         <div class="container-fluid">
-            <card class="card card-primary">
+            <card class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title mb-2">Buscar lote</h3>
                     <div class="input-group">

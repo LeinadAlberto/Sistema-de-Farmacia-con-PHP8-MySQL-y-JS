@@ -11,15 +11,16 @@
 
 <!-- Modal para cambiar contraseña de Usuario -->
 <div class="modal fade" id="cambiocontra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <form id="form-pass">
                 <div class="modal-body">
                     <div class="text-center">
                         <img id="avatar3" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
@@ -33,16 +34,16 @@
                     </div>
 
                     <!-- Mensajes de Alerta -->
-                    <div class="alert alert-success text-center" id="update" style="display:none;">
+                    <div id="update" class="alert alert-success text-center" style="display:none;">
                         <span><i class="fas fa-thumbs-up m-1"></i> Contraseña cambiada con exito</span>
                     </div>
 
-                    <div class="alert alert-danger text-center" id="noupdate" style="display:none;">
+                    <div id="noupdate" class="alert alert-danger text-center" style="display:none;">
                         <span><i class="fas fa-exclamation-triangle m-1"></i> <b>La contraseña actual no es correcta</b></span>
                     </div>
                     <!-- Fin Mensajes de Alerta -->
 
-                    <form id="form-pass">
+                    
                         <div class="input-group mb-3 mt-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -65,11 +66,11 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
-                    </form>
+                    <button type="submit" class="btn bg-gradient-info">Guardar</button>
                 </div>
-            </div>
+            </form>
         </div>
+    </div>
 </div><!-- /.modal -->
 
 <!-- Modal para cambiar avatar de Usuario -->
@@ -81,45 +82,44 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
+            </div><!-- /.modal-header -->
 
-            <div class="modal-body">
-                <div class="text-center">
-                    <img id="avatar1" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
-                </div>
-                <div class="text-center">
-                    <b>
-                        <?php 
-                            echo $_SESSION["nombre_us"];
-                        ?>
-                    </b>
-                </div>
-                <!-- Mensajes de Alerta -->
-                <div class="alert alert-success text-center" id="edit" style="display:none;">
-                    <span><i class="fas fa-thumbs-up m-1"></i> Avatar cambiado con exito</span>
-                </div>
+            <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
+            <form id="form-photo" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img id="avatar1" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
+                    </div>
+                    <div class="text-center">
+                        <b>
+                            <?php 
+                                echo $_SESSION["nombre_us"];
+                            ?>
+                        </b>
+                    </div>
+                    <!-- Mensajes de Alerta -->
+                    <div class="alert alert-success text-center" id="edit" style="display:none;">
+                        <span><i class="fas fa-thumbs-up m-1"></i> Avatar cambiado con exito</span>
+                    </div>
 
-                <div class="alert alert-danger text-center" id="noedit" style="display:none;">
-                    <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
-                </div>
-                <!-- Fin Mensajes de Alerta -->
-
-                <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
-                <form id="form-photo" enctype="multipart/form-data">
+                    <div class="alert alert-danger text-center" id="noedit" style="display:none;">
+                        <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
+                    </div>
+                    <!-- Fin Mensajes de Alerta -->
+    
                     <div class="input-group ml-5 mb-3 mt-3">
                         <input type="file" name="photo" class="input-group ml-5 ">
                         <input type="hidden" name="funcion" value="cambiar_foto">
                     </div><!-- /.input-group -->
+                </div><!-- /.modal-body -->
 
-            </div><!-- /.modal-body -->
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn bg-gradient-primary">Guardar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </div><!-- /.modal-footer -->
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <!-- Content Wrapper. Contains page content -->
@@ -143,9 +143,7 @@
 
     <section>
         <div class="content">
-
             <div class="container-fluid">
-
                 <div class="row">
 
                     <!-- Columna Isquierda -->
@@ -159,11 +157,11 @@
                                     <img id="avatar2" src="../img/avatar.png" class="profile-user-img img-fluid img-circle" alt="Imágen de Avatar">
                                 </div>
                                 <div class="text-center">
-                                    <button data-toggle="modal" data-target="#cambiophoto" type="button" class="btn btn-primary btn-sm mt-2">Cambiar avatar</button>
+                                    <button data-toggle="modal" data-target="#cambiophoto" type="button" class="btn btn-info btn-sm mt-2">Cambiar avatar</button>
                                 </div>
                                 
                                 <!-- Obtiene el campo id_usuario de la sesión -->
-                                <input id="id_usuario" type="hidden" value="<?php echo $_SESSION["usuario"]; ?>">
+                                <input type="hidden" id="id_usuario" value="<?php echo $_SESSION["usuario"]; ?>">
 
                                 <h3 id="nombre_us" class="profile-username text-center text-success">Nombre</h3>
                                 
@@ -238,11 +236,11 @@
                             <div class="card-body">
 
                                 <!-- Mensajes de Alerta -->
-                                <div class="alert alert-success text-center" id="editado" style="display: none;">
+                                <div id="editado" class="alert alert-success text-center" style="display: none;">
                                     <span><i class="fas fa-thumbs-up m-1"></i> Editado con éxito</span>
                                 </div>
 
-                                <div class="alert alert-danger text-center" id="noeditado" style="display: none;">
+                                <div id="noeditado" class="alert alert-danger text-center" style="display: none;">
                                     <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Edición Deshabilitada</b></span>
                                 </div>
                                 <!-- Fin Mensajes de Alerta -->
@@ -253,28 +251,28 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label" for="telefono" >Teléfono</label>
                                         <div class="col-sm-10">
-                                            <input type="number" id="telefono" class="form-control">
+                                            <input id="telefono" type="number" class="form-control">
                                         </div>
                                     </div>
                                     <!-- Residencia -->
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label" for="residencia" >Residencia</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="residencia" class="form-control">
+                                            <input id="residencia" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <!-- Correo Electrónico -->
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label" for="correo" >Correo</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="correo" class="form-control">
+                                            <input id="correo" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <!-- Género -->
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label" for="sexo" >Género</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="sexo" class="form-control">
+                                            <input id="sexo" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <!-- Información Adicional -->
@@ -298,9 +296,7 @@
                     </div><!-- /.col-md-9 -->
 
                 </div><!-- /.row -->
-
             </div><!-- /.container-fluid -->
-
         </div><!-- /.content -->
     </section>
 </div><!-- /.content-wrapper -->

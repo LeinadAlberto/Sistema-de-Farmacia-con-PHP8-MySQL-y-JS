@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     var tipo_usuario = $('#tipo_usuario').val();
     /* console.log(tipo_usuario); */
 
@@ -7,8 +8,9 @@ $(document).ready(function() {
         $('#button-crear').hide();
     }
 
-    /* Lista todos los Usuarios ingresados en el buscador. */
+    /* Lista todos los usuarios registrados. */
     buscar_datos();
+
     var funcion;
 
     function buscar_datos(consulta) {
@@ -60,17 +62,21 @@ $(document).ready(function() {
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">`;
+                                /* Si el tipo usuario es root, realiza todas las acciones permitidas dentro el if por verdad */
                                 if (tipo_usuario == 3) {
+                                    /* Si el usuario es administrador o técnico, el root puede eliminarlo */
                                     if (usuario.tipo_usuario != 3) {
                                         template += `<a href="#" class="borrar-usuario btn btn-sm btn-danger mr-1" type="button" data-toggle="modal" data-target="#confirmar">
                                                         <i class="fas fa-user-times mr-1"></i> Eliminar
                                                     </a>`;
                                     }
+                                    /* Si el usuario es un técnico el root lo puede ascender */
                                     if (usuario.tipo_usuario == 2) {
-                                        template += `<a href="#" class="ascender btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#confirmar">
+                                        template += `<a href="#" class="ascender btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#confirmar">
                                                         <i class="fas fa-sort-amount-up mr-1"></i> Ascender
                                                     </a>`;
                                     }
+                                    /* Si el usuario es un administrador el root puede descenderlo */
                                     if (usuario.tipo_usuario == 1) {
                                         template += `<a href="#" class="descender btn btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#confirmar">
                                                         <i class="fas fa-sort-amount-down mr-1"></i> Descender
@@ -97,7 +103,7 @@ $(document).ready(function() {
  
     $(document).on('keyup', '#buscar', function() {
         let valor = $(this).val(); /* Almacena dentro la variable valor los datos que se ingresan dentro #buscar. */
-        console.log(valor);
+        /* console.log(valor); */
         if (valor != '') {
             buscar_datos(valor);
         } else {
@@ -105,13 +111,16 @@ $(document).ready(function() {
         } 
     });
 
+    /* Código que permite realizar la petición al controlador para crear un usuario */
     $('#form-crear').submit(e => {
         let nombre = $('#nombre').val();
         let apellido = $('#apellido').val();
         let edad = $('#edad').val();
         let dni = $('#dni').val();
         let pass = $('#pass').val();
+
         funcion = 'crear_usuario';
+        
         $.post('../controlador/UsuarioController.php', 
             {nombre, apellido, edad, dni, pass, funcion}, 
             (response) => {
@@ -167,10 +176,9 @@ $(document).ready(function() {
     $('#form-confirmar').submit(e => {
         let pass = $('#oldpass').val();
         let id_usuario = $('#id_user').val();
+
         funcion = $('#funcion').val();
-        console.log(pass);
-        console.log(id_usuario);
-        console.log(funcion);
+
         $.post('../controlador/UsuarioController.php', {pass, id_usuario, funcion}, (response) => {
             if (response == 'ascendido' || response == 'descendido' || response == 'borrado') {
                 $('#confirmado').hide('slow');
@@ -183,8 +191,10 @@ $(document).ready(function() {
                 $('#rechazado').hide(1500); 
                 $('#form-confirmar').trigger('reset');
             }
+
             buscar_datos();
         });
+
         e.preventDefault();
     });
 });

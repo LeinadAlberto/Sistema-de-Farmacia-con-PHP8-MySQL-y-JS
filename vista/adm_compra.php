@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="adm_catalogo.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="adm_catalogo.php">Inicio</a></li>
                                 <li class="breadcrumb-item active">Compra</li>
                             </ol>
                         </div>
@@ -31,36 +31,41 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-success">
+                            <div class="card card-info">
                                 <div class="card-header">
                                 </div>
+
                                 <div class="card-body p-0">
+                                    <!-- Datos de la Compra -->
                                     <header>
                                         <div class="logo_cp">
                                             <img src="../img/logo.png" width="100" height="100">
                                         </div>
                                         <h1 class="titulo_cp">SOLICITUD DE COMPRA</h1>
                                         <div class="datos_cp">
+                                            <!-- Cliente -->
                                             <div class="form-group row">
                                                 <span>Cliente: </span>
                                                 <div class="input-group-append col-md-6">
-                                                    <input type="text" class="form-control" id="cliente" placeholder="Ingresa nombre">
+                                                    <input id="cliente" type="text" class="form-control" placeholder="Ingresa nombre">
                                                 </div>
                                             </div>
+                                            <!-- DNI -->
                                             <div class="form-group row">
                                                 <span>DNI: </span>
                                                 <div class="input-group-append col-md-6">
-                                                    <input type="number" class="form-control" id="dni" placeholder="Ingresa DNI">
+                                                    <input id="dni" type="number" class="form-control" placeholder="Ingresa DNI">
                                                 </div>
                                             </div>
+                                            <!-- Vendedor -->
                                             <div class="form-group row">
                                                 <span>Vendedor: </span>
                                                 <h3>usuario</h3>
                                             </div>
-                                        </div>
+                                        </div><!-- /.datos_cp -->
                                     </header>
 
-                                    <button id="actualizar"class="btn btn-success">Actualizar</button>
+                                    <button id="actualizar" class="btn btn-success">Actualizar</button>
 
                                     <div id="cp" class="card-body p-0">
                                         <!-- Tabla de Productos -->
@@ -70,10 +75,10 @@
                                                     <th scope="col">Nombre</th>
                                                     <th scope="col">Stock</th>
                                                     <th scope="col">Precio</th>
-                                                    <th scope="col">Concentracion</th>
+                                                    <th scope="col">Concentración</th>
                                                     <th scope="col">Adicional</th>
                                                     <th scope="col">Laboratorio</th>
-                                                    <th scope="col">Presentacion</th>
+                                                    <th scope="col">Presentación</th>
                                                     <th scope="col">Cantidad</th>
                                                     <th scope="col">Sub Total</th>
                                                     <th scope="col">Eliminar</th>
@@ -94,31 +99,35 @@
                                                             <i class="fas fa-dollar-sign"></i>
                                                             Calculo 1
                                                         </h3>
-                                                    </div>
+                                                    </div><!-- /.card-header -->
+
                                                     <div class="card-body">
+                                                        <!-- SUB TOTAL -->
                                                         <div class="info-box mb-3 bg-warning p-0">
                                                             <span class="info-box-icon"><i class="fas fa-tag"></i></span>
                                                             <div class="info-box-content">
                                                                 <span class="info-box-text text-left ">SUB TOTAL</span>
-                                                                <span class="info-box-number" id="subtotal">10</span>
+                                                                <span id="subtotal" class="info-box-number">10</span>
                                                             </div>
                                                         </div>
+                                                        <!-- IGV -->
                                                         <div class="info-box mb-3 bg-warning">
                                                             <span class="info-box-icon"><i class="fas fa-tag"></i></span>
                                                             <div class="info-box-content">
                                                                 <span class="info-box-text text-left ">IGV</span>
-                                                                <span class="info-box-number"id="con_igv">2</span>
+                                                                <span id="con_igv" class="info-box-number">2</span>
                                                             </div>
                                                         </div>
+                                                        <!-- SIN DESCUENTO -->
                                                         <div class="info-box mb-3 bg-info">
                                                             <span class="info-box-icon"><i class="fas fa-tag"></i></span>
                                                             <div class="info-box-content">
                                                                 <span class="info-box-text text-left ">SIN DESCUENTO</span>
-                                                                <span class="info-box-number" id="total_sin_descuento">12</span>
+                                                                <span id="total_sin_descuento" class="info-box-number">12</span>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                    </div><!-- /.card-body -->
+                                                </div><!-- /.card -->
                                             </div><!-- /.col-md-4 -->
 
                                             <!-- Calculo 2 -->
@@ -142,7 +151,7 @@
                                                             <span class="info-box-icon"><i class="ion ion-ios-cart-outline"></i></span>
                                                             <div class="info-box-content">
                                                                 <span class="info-box-text text-left ">TOTAL</span>
-                                                                <span class="info-box-number" id="total">12</span>
+                                                                <span id="total" class="info-box-number">12</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -163,14 +172,14 @@
                                                             <span class="info-box-icon"><i class="fas fa-money-bill-alt"></i></span>
                                                             <div class="info-box-content">
                                                                 <span class="info-box-text text-left ">INGRESO</span>
-                                                                <input type="number" id="pago" min="1" placeholder="Ingresa Dinero" class="form-control">
+                                                                <input id="pago" type="number" min="1" placeholder="Ingresa Dinero" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="info-box mb-3 bg-info">
                                                             <span class="info-box-icon"><i class="fas fa-money-bill-wave"></i></span>
                                                             <div class="info-box-content">
                                                                 <span class="info-box-text text-left ">VUELTO</span>
-                                                                <span class="info-box-number" id="vuelto">3</span>
+                                                                <span id="vuelto" class="info-box-number">3</span>
                                                             </div>
                                                         </div>
                                                     </div>

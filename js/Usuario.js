@@ -1,13 +1,14 @@
 $(document).ready(function() {
     var funcion = '';
-    var id_usuario = $('#id_usuario').val();
+    var id_usuario = $('#id_usuario').val(); /* id del usuario que esta logueado */
+    /* console.log(id_usuario); */
     var edit = false;/* Bandera que controla la acción de editar datos personales */
 
     buscar_usuario(id_usuario);
     
     function buscar_usuario(dato) {
         funcion = 'buscar_usuario';
-        $.post('../controlador/UsuarioController.php',{dato, funcion},(response) => {
+        $.post('../controlador/UsuarioController.php', {dato, funcion}, (response) => {
             let nombre = '';
             let apellidos = '';
             let edad = '';
@@ -60,9 +61,11 @@ $(document).ready(function() {
 
     $(document).on('click', '.edit', (e) => {
         funcion = 'capturar_datos';
-        edit = true;
+        edit = true; // Bandera que al tener valor true permita editar datos personales del usuario logueado
         $.post('../controlador/UsuarioController.php',{funcion, id_usuario}, (response) => {
+            /* console.log(response); */
             const usuario = JSON.parse(response);
+            /* console.log(usuario); */
             $('#telefono').val(usuario.telefono);
             $('#residencia').val(usuario.residencia);
             $('#correo').val(usuario.correo);
@@ -99,6 +102,7 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    /* Evento que se encarga de cambiar la contraseña del usuario logueado. */
     $('#form-pass').submit(e => {
         let oldpass = $('#oldpass').val();
         let newpass = $('#newpass').val();

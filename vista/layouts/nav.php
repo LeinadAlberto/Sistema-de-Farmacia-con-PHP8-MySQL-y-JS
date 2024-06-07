@@ -2,7 +2,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS de la vista Administrar Compra -->
     <link rel="stylesheet" href="../css/compra.css">
-    <!-- CSS para corregir el diseño del carrito -->
+    <!-- CSS para corregir el diseño del carrito para dispositivos móviles -->
     <link rel="stylesheet" href="../css/main.css">
     <!-- Select2 - CSS - Versión 4.1.0 -->
     <link rel="stylesheet" href="../css/select2.css">
@@ -22,27 +22,40 @@
 
     <!-- Site wrapper -->
     <div class="wrapper">
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
             <!-- Left navbar links -->
             <ul class="navbar-nav">
+
+                <!-- Icono Hamburguesa -->
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
+
+                <!-- Inicio -->
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
+                    <a href="adm_catalogo.php" class="nav-link">Inicio</a>
                 </li>
+
+                <!-- Contactos -->
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Contactos</a>
                 </li>
-                <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
-                    <img style="cursor: pointer;" src="../img/carrito.png" class="imagen-carrito nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+
+                <!-- Start - Componente Dropdown para el Carrito de Compras -->
+                <li id="cat-carrito" class="nav-item dropdown" style="display: none;">
+                    <img class="imagen-carrito nav-link dropdown-toggle" style="cursor: pointer;" src="../img/carrito.png" role="button" data-toggle="dropdown" aria-expanded="false">
+
                     <span id="contador" class="contador badge badge-danger"></span>
-                    <div class="dropdown-menu">
+                    
+                    <!-- Tabla del Carrito -->
+                    <div class="dropdown-menu p-1">
                         <table class="carro table table-hover text-nowrap p-0">
-                            <thead class="table-success">
+                            <thead style="background-color: #71b4c3;">
                                 <tr>
-                                    <th>Código</th>
+                                    <th>Cod</th>
                                     <th>Nombre</th>
                                     <th>Concentración</th>
                                     <th>Adicional</th>
@@ -54,11 +67,11 @@
 
                             </tbody>
                         </table>
-                        <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                        <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
+                        <a id="procesar-pedido" href="#" class="btn btn-block text-white" style="background: #960944;">Procesar Compra</a>
+                        <a id="vaciar-carrito" href="#" class="btn btn-info btn-block">Vaciar Carrito</a>
                     </div>
                 </li>
-
+                <!-- End - Componente Dropdown para el Carrito de Compras -->
             </ul>
 
             <!-- Right navbar links -->
@@ -98,7 +111,8 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     
                         <li class="nav-header">Usuario</li>
-                        
+
+                        <!-- Datos personales -->
                         <li class="nav-item">
                             <a href="editar_datos_personales.php" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>
@@ -108,6 +122,7 @@
                             </a>
                         </li>
 
+                        <!-- Gestión Usuario -->
                         <li class="nav-item">
                             <a href="adm_usuario.php" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -119,6 +134,7 @@
 
                         <li class="nav-header">Almacén</li>
                         
+                        <!-- Gestión Producto -->
                         <li class="nav-item">
                             <a href="adm_producto.php" class="nav-link">
                                 <i class="nav-icon fas fa-pills"></i>
@@ -128,6 +144,7 @@
                             </a>
                         </li>
 
+                        <!-- Gestión Atributo -->
                         <li class="nav-item">
                             <a href="adm_atributo.php" class="nav-link">
                                 <i class="nav-icon fas fa-vials"></i>
@@ -137,6 +154,7 @@
                             </a>
                         </li>
 
+                        <!-- Gestión Lote -->
                         <li class="nav-item">
                             <a href="adm_lote.php" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
@@ -148,6 +166,7 @@
 
                         <li class="nav-header">Compras</li>
 
+                        <!-- Gestión Proveedor -->
                         <li class="nav-item">
                             <a href="adm_proveedor.php" class="nav-link">
                                 <i class="nav-icon fas fa-truck"></i>

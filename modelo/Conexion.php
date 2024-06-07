@@ -2,13 +2,13 @@
 
     class Conexion {
 
-        private $db = "farmaciasistema";
-        private $servidor = "localhost";
-        private $puerto = "3306";
-        private $charset = "utf8";
+        private $db = "farmaciasistema";    // Nombre de la Base de Datos
+        private $servidor = "localhost";    // Nombre del servidor 
+        private $puerto = "3306";           // Número de Puerto 
+        private $charset = "utf8";          // Set de caracteres
         
-        private $usuario = "root";
-        private $contrasena = "";
+        private $usuario = "root";          // Nombre del Usuario
+        private $contrasena = "";           // Contraseña del Usuario
 
         private $atributos = [
             PDO::ATTR_CASE => PDO::CASE_LOWER, 

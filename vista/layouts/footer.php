@@ -2,7 +2,7 @@
                 <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
                 </div>
-                <strong>Derechos de autor &copy; 2023 <a href="#">DanielWebDeveloper</a>.</strong> Todos los derechos reservados.
+                <strong>Derechos de autor &copy; 2024 <a href="#">DanielWebDeveloper</a>.</strong> Todos los derechos reservados.
             </footer>
 
             <!-- Control Sidebar -->

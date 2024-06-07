@@ -21,38 +21,37 @@
                     </button>
                 </div>
 
-                <div class="modal-body">
-                    <div class="text-center">
-                        <img id="logoactual" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
-                    </div>
-                    <div class="text-center">
-                        <b id="nombre_logo"></b>
-                    </div>
-                    <!-- Mensajes de Alerta -->
-                    <div class="alert alert-success text-center" id="edit" style="display:none;">
-                        <span><i class="fas fa-thumbs-up m-1"></i> Logo cambiado con exito</span>
-                    </div>
+                <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
+                <form id="form-logo" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img id="logoactual" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
+                        </div>
+                        <div class="text-center">
+                            <b id="nombre_logo"></b>
+                        </div>
+                        <!-- Mensajes de Alerta -->
+                        <div class="alert alert-success text-center" id="edit" style="display:none;">
+                            <span><i class="fas fa-thumbs-up m-1"></i> Logo cambiado con exito</span>
+                        </div>
 
-                    <div class="alert alert-danger text-center" id="noedit" style="display:none;">
-                        <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
-                    </div>
-                    <!-- Fin Mensajes de Alerta -->
+                        <div class="alert alert-danger text-center" id="noedit" style="display:none;">
+                            <span><i class="fas fa-exclamation-triangle m-1"></i> <b>Formato de imágen no permitido</b></span>
+                        </div>
+                        <!-- Fin Mensajes de Alerta -->
 
-                    <!-- form-data permite el envio de datos por medio del atributo name de cada elemento -->
-                    <form id="form-logo" enctype="multipart/form-data">
                         <div class="input-group ml-5 mb-3 mt-3">
                             <input type="file" name="photo" class="input-group ml-5 ">
                             <input type="hidden" name="funcion" id="funcion">
                             <input type="hidden" name="id_logo_lab" id="id_logo_lab">
                         </div><!-- /.input-group -->
+                    </div><!-- /.modal-body -->
 
-                </div><!-- /.modal-body -->
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
-                    </form>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div><!-- /.modal -->
@@ -69,34 +68,35 @@
                         </button>
                     </div><!-- /.card-header -->
 
-                    <div class="card-body">
-                        <!-- Mensajes de Alerta -->
-                        <div class="alert alert-success text-center" id="add-laboratorio" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Laboratorio registrado con exito</span>
-                        </div>
+                    <form id="form-crear-laboratorio">
+                        <div class="card-body">
+                            <!-- Mensajes de Alerta -->
+                            <div class="alert alert-success text-center" id="add-laboratorio" style="display:none;">
+                                <span><i class="fas fa-thumbs-up m-1"></i> Laboratorio creado con exito</span>
+                            </div>
 
-                        <div class="alert alert-danger text-center" id="noadd-laboratorio" style="display:none;">
-                            <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El Laboratorio ya existe</b></span>
-                        </div>
+                            <div class="alert alert-danger text-center" id="noadd-laboratorio" style="display:none;">
+                                <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El Laboratorio ya existe</b></span>
+                            </div>
 
-                        <div class="alert alert-success text-center" id="edit-lab" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Laboratorio editado con exito</span>
-                        </div>
-                        <!-- Fin Mensajes de Alerta -->
+                            <div class="alert alert-success text-center" id="edit-lab" style="display:none;">
+                                <span><i class="fas fa-thumbs-up m-1"></i> Laboratorio editado con exito</span>
+                            </div>
+                            <!-- Fin Mensajes de Alerta -->
 
-                        <form id="form-crear-laboratorio">
+                            
                             <div class="form-group">
                                 <label for="nombre-laboratorio">Nombre</label>
                                 <input id="nombre-laboratorio" type="text" class="form-control" placeholder="Ingrese nombre" required>
                                 <input type="hidden" id="id_editar_lab">                       
                             </div>
-                    </div><!-- /.card-body -->
+                        </div><!-- /.card-body -->
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
-                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
-                        </form>
-                    </div><!-- /.card-footer -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
+                        </div><!-- /.card-footer -->
+                    </form>
                 </div><!-- /.card -->
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -114,34 +114,34 @@
                         </button>
                     </div><!-- /.card-header -->
 
-                    <div class="card-body">
-                        <!-- Mensajes de Alerta -->
-                        <div class="alert alert-success text-center" id="add-tipo" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Tipo registrado con exito</span>
-                        </div>
+                    <form id="form-crear-tipo">
+                        <div class="card-body">
+                            <!-- Mensajes de Alerta -->
+                            <div class="alert alert-success text-center" id="add-tipo" style="display:none;">
+                                <span><i class="fas fa-thumbs-up m-1"></i> Tipo creado con exito</span>
+                            </div>
 
-                        <div class="alert alert-danger text-center" id="noadd-tipo" style="display:none;">
-                            <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El Tipo ya existe</b></span>
-                        </div>
+                            <div class="alert alert-danger text-center" id="noadd-tipo" style="display:none;">
+                                <span><i class="fas fa-exclamation-triangle m-1"></i> <b>El Tipo ya existe</b></span>
+                            </div>
 
-                        <div class="alert alert-success text-center" id="edit-tip" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Tipo editado con exito</span>
-                        </div>
-                        <!-- Fin Mensajes de Alerta -->
+                            <div class="alert alert-success text-center" id="edit-tip" style="display:none;">
+                                <span><i class="fas fa-thumbs-up m-1"></i> Tipo editado con exito</span>
+                            </div>
+                            <!-- Fin Mensajes de Alerta -->
 
-                        <form id="form-crear-tipo">
                             <div class="form-group">
                                 <label for="nombre-tipo">Nombre</label>
                                 <input id="nombre-tipo" type="text" class="form-control" placeholder="Ingrese nombre" required>
                                 <input type="hidden" id="id_editar_tip">
                             </div>
-                    </div><!-- /.card-body -->
+                        </div><!-- /.card-body -->
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
-                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
-                        </form>
-                    </div><!-- /.card-footer -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
+                        </div><!-- /.card-footer -->
+                    </form>
                 </div><!-- /.card -->
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -159,34 +159,34 @@
                         </button>
                     </div><!-- /.card-header -->
 
-                    <div class="card-body">
-                        <!-- Mensajes de Alerta -->
-                        <div class="alert alert-success text-center" id="add-pre" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Presentación registrada con exito</span>
-                        </div>
+                    <form id="form-crear-presentacion">
+                        <div class="card-body">
+                            <!-- Mensajes de Alerta -->
+                            <div class="alert alert-success text-center" id="add-pre" style="display:none;">
+                                <span><i class="fas fa-thumbs-up m-1"></i> Presentación creada con exito</span>
+                            </div>
 
-                        <div class="alert alert-danger text-center" id="noadd-pre" style="display:none;">
-                            <span><i class="fas fa-exclamation-triangle m-1"></i> <b>La Presentación ya existe</b></span>
-                        </div>
+                            <div class="alert alert-danger text-center" id="noadd-pre" style="display:none;">
+                                <span><i class="fas fa-exclamation-triangle m-1"></i> <b>La Presentación ya existe</b></span>
+                            </div>
 
-                        <div class="alert alert-success text-center" id="edit-pre" style="display:none;">
-                            <span><i class="fas fa-thumbs-up m-1"></i> Presentación editada con exito</span>
-                        </div>
-                        <!-- Fin Mensajes de Alerta -->
+                            <div class="alert alert-success text-center" id="edit-pre" style="display:none;">
+                                <span><i class="fas fa-thumbs-up m-1"></i> Presentación editada con exito</span>
+                            </div>
+                            <!-- Fin Mensajes de Alerta -->
 
-                        <form id="form-crear-presentacion">
                             <div class="form-group">
                                 <label for="nombre-presentacion">Nombre</label>
                                 <input id="nombre-presentacion" type="text" class="form-control" placeholder="Ingrese nombre" required>
                                 <input type="hidden" id="id_editar_pre"> 
                             </div>
-                    </div><!-- /.card-body -->
+                        </div><!-- /.card-body -->
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-primary float-right m-1">Guardar</button>
-                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
-                        </form>
-                    </div><!-- /.card-footer -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
+                        </div><!-- /.card-footer -->
+                    </form>
                 </div><!-- /.card -->
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -242,10 +242,10 @@
                                 <div class="tab-content">
                                     <!-- Laboratorio -->
                                     <div class="tab-pane active" id="laboratorio">
-                                        <div class="card card-info">
+                                        <div class="card card-success">
                                             <div class="card-header">
                                                 <div class="card-title">Buscar Laboratorio 
-                                                    <button type="button" data-toggle="modal" data-target="#crearlaboratorio" class="btn bg-gradient-info btn-sm m-2">
+                                                    <button type="button" data-toggle="modal" data-target="#crearlaboratorio" class="btn bg-gradient-primary btn-sm m-2">
                                                         Crear Laboratorio
                                                     </button>
                                                 </div><!-- /.card-title -->

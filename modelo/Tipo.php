@@ -78,14 +78,21 @@
             echo "edit";
         }
 
+        /* Función que retorna todos los nombres de tipo de producto de la tabla tipo_producto. */
         function rellenar_tipos() {
+
             $sql = "SELECT *
                     FROM tipo_producto
                     ORDER BY nombre ASC";
-                $query = $this -> acceso -> prepare($sql);
-                $query -> execute();
-                $this -> objetos = $query -> fetchAll();
-                return $this -> objetos;
+
+            $query = $this -> acceso -> prepare($sql);
+
+            $query -> execute();
+
+            $this -> objetos = $query -> fetchAll();
+
+            return $this -> objetos;
+            
         }
 
     }

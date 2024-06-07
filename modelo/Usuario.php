@@ -23,6 +23,7 @@
             return $this -> objetos;
         }
 
+        /* Método que obtiene los datos de un usuario, mediante su id. */
         function obtener_datos($id) {
             $sql = "SELECT * 
                     FROM usuario 
@@ -53,6 +54,7 @@
                                 ));
         }
 
+        /* Método que permite cambiar la contraseña del usuario logueado. */
         function cambiar_contra($id_usuario, $oldpass, $newpass) {
             $sql = "SELECT * 
                     FROM usuario 
@@ -118,6 +120,7 @@
             }
         }
 
+        /* Método que me permite crear un nuevo usuario. */
         function crear($nombre, $apellido, $edad, $dni, $pass, $tipo, $avatar) {
             /* Verifico primero si el dni del usuario ya existe en la Base de Datos */
             $sql = "SELECT id_usuario 

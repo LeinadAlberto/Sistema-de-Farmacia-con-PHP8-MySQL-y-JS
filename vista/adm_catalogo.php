@@ -1,6 +1,7 @@
 <?php 
     session_start();
 
+    /* Si Usuario es Administrador o Root */
     if ($_SESSION["us_tipo"] == 1 || $_SESSION["us_tipo"] == 3) {
 
         include_once "layouts/header.php";
@@ -11,6 +12,7 @@
         <?php include_once "layouts/nav.php"; ?>
 
         <div class="content-wrapper">
+
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row">
@@ -19,19 +21,23 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="adm_catalogo.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="adm_catalogo.php">Inicio</a></li>
                                 <li class="breadcrumb-item active">Catálogo</li>
                             </ol>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section><!-- /.content-header -->
-
+            
+            <!-- Start - Tabla de Lotes con Fecha Expirada ó en Riesgo de Expirar -->
             <section>
+
                 <div class="container-fluid">
-                    <card class="card card-danger">
+
+                    <card class="card" style="background: #960944; !important">
+
                         <div class="card-header">
-                            <h3 class="card-title">Lotes en riesgo</h3>
+                            <h3 class="card-title text-white">Lotes en riesgo</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
@@ -54,6 +60,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="lotes" class="table-active">
+                                
 
                                 </tbody>
                             </table>
@@ -65,10 +72,12 @@
                     </card>
                 </div>
             </section>
+            <!-- End - Tabla de Lotes con Fecha Expirada ó en Riesgo de Expirar -->
 
+            <!-- Start - Sección para buscar y mostrar Productos para agregar al carrito -->
             <section>
                 <div class="container-fluid">
-                    <card class="card card-primary">
+                    <card class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title mb-2">Buscar producto</h3>
                             <div class="input-group">
@@ -93,6 +102,7 @@
                     </card>
                 </div>
             </section>
+            <!-- End - Sección para buscar y mostrar Productos para agregar al carrito -->
 
         </div><!-- /.content-wrapper -->
 
@@ -101,10 +111,12 @@
 
     } else { // Closed if
 
+        /* Si Usuario no es Administrador o Root, se lo redirecciona al Login*/
         header("Location: ../index.php");
         
     }  
 ?>
 
 <script src="../js/Catalogo.js"></script>
+
 <script src="../js/Carrito.js"></script>

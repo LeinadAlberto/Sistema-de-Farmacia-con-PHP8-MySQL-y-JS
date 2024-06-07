@@ -78,14 +78,21 @@
             echo "edit";
         }
 
+        /* Función que retorna todos los nombres de presentación de la tabla presentación. */
         function rellenar_presentaciones() {
+
             $sql = "SELECT *
                     FROM presentacion
                     ORDER BY nombre ASC";
-                $query = $this -> acceso -> prepare($sql);
-                $query -> execute();
-                $this -> objetos = $query -> fetchAll();
-                return $this -> objetos;
+
+            $query = $this -> acceso -> prepare($sql);
+
+            $query -> execute();
+
+            $this -> objetos = $query -> fetchAll();
+
+            return $this -> objetos;
+
         }
 
     }
