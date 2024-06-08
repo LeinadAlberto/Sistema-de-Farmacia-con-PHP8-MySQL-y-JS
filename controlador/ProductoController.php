@@ -169,6 +169,7 @@
     }
 
     if ($_POST["funcion"] == "traer_productos") {
+
         $html = "";
 
         /* json_decode : Función PHP que se utiliza para decodificar una cadena JSON
@@ -213,4 +214,63 @@
         } 
         echo $html;
         /* print_r($producto); */
+    }
+
+    /* 
+    if ($_POST["funcion"] == "verificar_stock") {
+
+        $id = $_POST["id"];
+
+        $cantidad = $_POST["cantidad"];
+        
+        $producto->obtener_stock($id);
+
+        foreach ($producto->objetos as $objeto) {
+
+            $total = $objeto->total;
+
+        }
+
+        if ($total >= $cantidad && $cantidad > 0) {
+
+            echo 0;
+
+        } else {
+
+            echo 1;
+        }
+
+    }
+    */
+
+    if ($_POST["funcion"] == "verificar_stock") {
+
+        $error = 0;
+
+        $productos = json_decode($_POST["productos"]);
+
+        foreach ($productos as $objeto) {
+
+            $producto->obtener_stock($objeto->id);
+
+            foreach ($producto->objetos as $obj) {
+
+                $total = $obj->total;
+
+            }
+
+            if ($total >= $objeto->cantidad && $objeto->cantidad > 0) {
+
+                $error = $error + 0;
+
+            } else {
+
+                $error = $error + 1;
+
+            }
+
+        }
+
+        echo $error;
+
     }

@@ -194,7 +194,7 @@
                                             <a href="../vista/adm_catalogo.php" class="btn btn-primary btn-block">Seguir comprando</a>
                                         </div>
                                         <div class="col-xs-12 col-md-4">
-                                            <a href="#" class="btn btn-success btn-block" id="procesar-compra">Realizar compra</a>
+                                            <a type="number" id="procesar-compra" class="btn btn-success btn-block" >Realizar compra</a>
                                         </div>
                                     </div><!-- /.row -->
 
