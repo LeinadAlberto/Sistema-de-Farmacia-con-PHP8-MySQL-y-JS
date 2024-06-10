@@ -509,6 +509,12 @@ $(document).ready(function() {
                         title: 'Se realizo la compra con exito',
                         showConfirmButton: false,
                         timer: 1500
+                    }).then(function() {
+
+                        EliminarLS();
+
+                        location.href = '../vista/adm_catalogo.php';
+
                     });
 
                 } else {
