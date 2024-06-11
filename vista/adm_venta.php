@@ -11,6 +11,88 @@
         
 <?php include_once "layouts/nav.php"; ?>
 
+<!-- Modal para Vista Venta -->
+<div class="modal fade" id="vista_venta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Registros de Ventas</h3>
+                    <button data-dismiss="modal" aria-label="close" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div><!-- /.card-header -->
+                
+                
+                <div class="card-body">
+                    <!-- Código Venta -->
+                    <div class="form-group">
+                        <label for="codigo_venta">Código Venta: </label>
+                        <span id="codigo_venta"></span>
+                    </div>
+
+                    <!-- Fecha -->
+                    <div class="form-group">
+                        <label for="fecha">Fecha: </label>
+                        <span id="fecha"></span>
+                    </div>
+
+                    <!-- Cliente -->
+                    <div class="form-group">
+                        <label for="cliente">Cliente: </label>
+                        <span id="cliente"></span>
+                    </div>
+
+                    <!-- DNI -->
+                    <div class="form-group">
+                        <label for="dni">DNI: </label>
+                        <span id="dni"></span>
+                    </div>
+
+                    <!-- Vendedor -->
+                    <div class="form-group">
+                        <label for="vendedor">Vendedor: </label>
+                        <span id="vendedor"></span>
+                    </div>
+
+                    <table class="table table-hover">
+
+                        <thead class="table-success">
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Producto</th>
+                                <th>Concentración</th>
+                                <th>Adicional</th>
+                                <th>Laboratorio</th>
+                                <th>Presentación</th>
+                                <th>Tipo</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-info" id="registros">
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="float-right input-group-append">
+                        <h3 class="m-3">Total: </h3>
+                        <h3 class="m-3" id="total"></h3>
+                    </div>
+
+                </div><!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline-secondary float-right m-1">Cerrar</button>
+                </div><!-- /.card-footer -->
+                
+            </div><!-- /.card -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     
@@ -49,6 +131,7 @@
                                 <th>DNI</th>
                                 <th>Total</th>
                                 <th>Vendedor</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
 
