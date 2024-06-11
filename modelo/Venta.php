@@ -55,4 +55,20 @@ class Venta {
 
     }
 
+    function buscar() {
+
+        $sql = "SELECT id_venta, fecha, cliente, dni, total, CONCAT(usuario.nombre_us, ' ', usuario.apellidos_us) AS vendedor 
+                FROM venta 
+                JOIN usuario ON vendedor = id_usuario";
+        
+        $query = $this -> acceso -> prepare($sql);
+
+        $query -> execute();
+
+        $this -> objetos = $query -> fetchAll();
+
+        return $this -> objetos;
+
+    }
+
 }
