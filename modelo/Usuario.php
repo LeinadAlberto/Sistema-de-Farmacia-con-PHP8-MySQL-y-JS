@@ -12,15 +12,43 @@
         }
 
         function loguearse($dni, $pass) {
+
             $sql = "SELECT * 
                     FROM usuario 
                     INNER JOIN tipo_us
                     ON us_tipo = id_tipo_us
-                    WHERE dni_us = :dni AND contrasena_us = :pass";
+                    WHERE dni_us = :dni";
+
             $query = $this -> acceso -> prepare($sql);
-            $query -> execute(array(":dni" => $dni, ":pass" => $pass));
+
+            $query -> execute(array(":dni" => $dni));
+
             $this -> objetos = $query -> fetchAll();
-            return $this -> objetos;
+
+            foreach ($this -> objetos as $objeto) {
+
+                $contrasena_actual = $objeto -> contrasena_us;
+
+            }
+
+            if (strpos($contrasena_actual, "$2y$10$") === 0) {  // Si la exprecion es igual a 0, significa que encontro la sub cadena en la posicion 0.
+
+                if (password_verify($pass, $contrasena_actual)) {
+
+                    return $this -> objetos;
+
+                } 
+
+            } else {
+
+                if ($pass == $contrasena_actual) {
+
+                    return $this -> objetos;
+
+                } 
+
+            }
+
         }
 
         /* Método que obtiene los datos de un usuario, mediante su id. */
@@ -56,22 +84,69 @@
 
         /* Método que permite cambiar la contraseña del usuario logueado. */
         function cambiar_contra($id_usuario, $oldpass, $newpass) {
+
             $sql = "SELECT * 
                     FROM usuario 
-                    WHERE id_usuario = :id AND contrasena_us = :oldpass";
+                    WHERE id_usuario = :id";
+
             $query = $this -> acceso -> prepare($sql);
-            $query -> execute(array(":id" => $id_usuario, ":oldpass" => $oldpass));
+
+            $query -> execute(array(":id" => $id_usuario));
+
             $this -> objetos = $query -> fetchAll();
-            if (!empty($this -> objetos)) {
-                $sql = "UPDATE usuario
+
+            foreach ($this -> objetos as $objeto) {
+
+                $contrasena_actual = $objeto -> contrasena_us;
+
+            }
+
+            if (strpos($contrasena_actual, "$2y$10$") === 0) {  // Si la exprecion es igual a 0, significa que encontro la sub cadena en la posicion 0.
+
+                if (password_verify($oldpass, $contrasena_actual)) {
+
+                    $pass = password_hash($newpass, PASSWORD_BCRYPT, ["cost" => 10]);
+
+                    $sql = "UPDATE usuario
                     SET contrasena_us = :newpass
                     WHERE id_usuario = :id";
-                $query = $this -> acceso -> prepare($sql);
-                $query -> execute(array(":id" => $id_usuario, ":newpass" => $newpass));
-                echo "update";
+
+                    $query = $this -> acceso -> prepare($sql);
+
+                    $query -> execute(array(":id" => $id_usuario, ":newpass" => $pass));
+
+                    echo "update";
+
+                } else {
+
+                    echo "noupdate";
+
+                }
+
             } else {
-                echo "noupdate";
+
+                if ($oldpass == $contrasena_actual) {
+
+                    $pass = password_hash($newpass, PASSWORD_BCRYPT, ["cost" => 10]);
+
+                    $sql = "UPDATE usuario
+                    SET contrasena_us = :newpass
+                    WHERE id_usuario = :id";
+
+                    $query = $this -> acceso -> prepare($sql);
+
+                    $query -> execute(array(":id" => $id_usuario, ":newpass" => $pass));
+
+                    echo "update";
+
+                } else {
+
+                    echo "noupdate";
+
+                }
+
             }
+
         }
 
         function cambiar_photo($id_usuario, $nombre) {
@@ -199,22 +274,56 @@
 
         /* Elimina un Usuario */
         function borrar($pass, $id_borrado, $id_usuario) {
+
             /* Valido si la contraseña del usuario Root es valida */
-            $sql = "SELECT id_usuario 
+            $sql = "SELECT *
                     FROM usuario 
-                    WHERE id_usuario = :id_usuario AND contrasena_us = :pass";
+                    WHERE id_usuario = :id_usuario";
+
             $query = $this -> acceso -> prepare($sql);
-            $query -> execute(array(":id_usuario" => $id_usuario, ":pass" => $pass));
+
+            $query -> execute(array(":id_usuario" => $id_usuario));
+
             $this -> objetos = $query -> fetchAll();
-            /* Si la validación del usuario Root es correcta procedemos a eliminar un Usuario */
-            if (!empty($this -> objetos)) {
-                $sql = "DELETE FROM usuario 
+
+            foreach ($this -> objetos as $objeto) {
+
+                $contrasena_actual = $objeto -> contrasena_us;
+
+            }
+
+            if (strpos($contrasena_actual, "$2y$10$") === 0) {  // Si la exprecion es igual a 0, significa que encontro la sub cadena en la posicion 0.
+
+                /* Si la validación del usuario Root es correcta procedemos a eliminar un Usuario */
+                if (password_verify($pass, $contrasena_actual)) {
+
+                    $sql = "DELETE FROM usuario 
                     WHERE id_usuario = :id";
-                $query = $this -> acceso -> prepare($sql);
-                $query -> execute(array(":id" => $id_borrado));
-                echo "borrado";
+
+                    $query = $this -> acceso -> prepare($sql);
+
+                    $query -> execute(array(":id" => $id_borrado));
+
+                    echo "borrado";
+
+                } else {
+
+                    echo "noborrado";
+    
+                }
+
             } else {
-                echo "noborrado";
+
+                if ($pass == $contrasena_actual) {
+
+                    return $this -> objetos;
+
+                } else {
+
+                    echo "noborrado";
+    
+                }
+
             }
 
         }

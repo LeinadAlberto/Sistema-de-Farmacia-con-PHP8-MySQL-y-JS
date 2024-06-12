@@ -22,9 +22,13 @@
 
             <form id="form-pass">
                 <div class="modal-body">
+
+                    <!--  Avatar Usuario-->
                     <div class="text-center">
                         <img id="avatar3" src="../img/avatar.png" alt="Imágen de Avatar del Usuario" class="profile-user-img img-fluid img-circle">
                     </div>
+
+                    <!-- Nombre Usuario Logueado -->
                     <div class="text-center">
                         <b>
                             <?php 
@@ -43,24 +47,25 @@
                     </div>
                     <!-- Fin Mensajes de Alerta -->
 
-                    
-                        <div class="input-group mb-3 mt-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-unlock-alt"></i>
-                                </span>
-                            </div>
-                            <input id="oldpass" type="password" class="form-control" placeholder="Ingrese contraseña actual">
-                        </div><!-- /.input-group -->
+                    <!-- Contraseña Actual -->
+                    <div class="input-group mb-3 mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-unlock-alt"></i>
+                            </span>
+                        </div>
+                        <input id="oldpass" type="password" class="form-control" placeholder="Ingrese contraseña actual">
+                    </div><!-- /.input-group -->
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-lock"></i>
-                                </span>
-                            </div>
-                            <input id="newpass" type="text" class="form-control" placeholder="Ingrese nueva contraseña">
-                        </div><!-- /.input-group -->
+                    <!-- Nueva Contraseña -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </div>
+                        <input id="newpass" type="text" class="form-control" placeholder="Ingrese nueva contraseña">
+                    </div><!-- /.input-group -->
                     
                 </div><!-- /.modal-body -->
 
@@ -179,7 +184,10 @@
                                         <span id="us_tipo" class="float-right">Administrador</span>
                                     </li>
 
-                                    <button data-toggle="modal" data-target="#cambiocontra" type="button" class="btn btn-block btn-outline-warning btn-sm mt-4">Cambiar Contraseña</button>
+                                    <button data-target="#cambiocontra" data-toggle="modal" type="button" class="btn btn-block btn-outline-warning btn-sm mt-4">
+                                        Cambiar Contraseña
+                                    </button>
+
                                 </ul>
                             </div><!-- /.card-body -->
                         </div><!-- /.card -->
