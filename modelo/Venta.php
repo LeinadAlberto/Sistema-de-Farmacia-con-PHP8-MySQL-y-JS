@@ -71,4 +71,70 @@ class Venta {
 
     }
 
+    function venta_dia_vendedor($id_usuario) {
+
+        $sql = "SELECT SUM(total) AS venta_dia_vendedor
+                FROM venta
+                WHERE vendedor = :id_usuario 
+                AND date(fecha) = date(curdate())"; 
+                
+        $query = $this -> acceso -> prepare($sql);
+
+        $query -> execute(array(":id_usuario" => $id_usuario));
+
+        $this -> objetos = $query -> fetchAll();
+
+        return $this -> objetos;
+
+    }
+
+    function venta_diaria() {
+
+        $sql = "SELECT SUM(total) AS venta_diaria
+                FROM venta
+                WHERE date(fecha) = date(curdate())"; 
+                
+        $query = $this -> acceso -> prepare($sql);
+
+        $query -> execute();
+
+        $this -> objetos = $query -> fetchAll();
+
+        return $this -> objetos;
+
+    }
+
+    function venta_mensual() {
+
+        $sql = "SELECT SUM(total) AS venta_mensual
+                FROM venta
+                WHERE year(fecha) = year(curdate())
+                AND month(fecha) = month(curdate())"; 
+                
+        $query = $this -> acceso -> prepare($sql);
+
+        $query -> execute();
+
+        $this -> objetos = $query -> fetchAll();
+
+        return $this -> objetos;
+
+    }
+
+    function venta_anual() {
+
+        $sql = "SELECT SUM(total) AS venta_anual
+                FROM venta
+                WHERE year(fecha) = year(curdate())"; 
+                
+        $query = $this -> acceso -> prepare($sql);
+
+        $query -> execute();
+
+        $this -> objetos = $query -> fetchAll();
+
+        return $this -> objetos;
+
+    }
+
 }
