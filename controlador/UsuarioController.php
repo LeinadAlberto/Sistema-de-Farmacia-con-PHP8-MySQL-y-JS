@@ -168,5 +168,23 @@
         $id_borrado = $_POST["id_usuario"];
         $usuario -> borrar($pass, $id_borrado, $id_usuario);
     }
+    
+    if ($_POST["funcion"] == "devolver_avatar") { 
+        
+        $usuario -> devolver_avatar($id_usuario);
+
+        $json = array();
+
+        foreach ($usuario -> objetos as $objeto) {
+
+            $json = $objeto;
+
+        }
+
+        $jsonstring = json_encode($json);
+
+        echo $jsonstring;
+        
+    }
 
 ?>
