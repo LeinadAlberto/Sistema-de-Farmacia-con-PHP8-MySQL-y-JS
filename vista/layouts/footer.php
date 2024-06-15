@@ -38,6 +38,34 @@
 
         });
 
+        funcion = 'tipo_usuario';
+
+        $.post('../controlador/UsuarioController.php', { funcion }, (response) => {
+
+            if (response == 1) {
+
+                $('#gestion_lote').hide();
+
+            } else if (response == 2) {
+
+                $('#gestion_lote').hide();
+
+                $('#gestion_usuario').hide();
+
+                $('#gestion_producto').hide();
+
+                $('#gestion_atributo').hide();
+
+                $('#gestion_proveedor').hide();
+
+                $('#almacen').hide();
+
+                $('#compras').hide();
+
+            }
+
+        });
+
     </script>
     
 </html>

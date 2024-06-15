@@ -20,7 +20,7 @@
 
             /* 2: Cuando el usuario es Técnico */
             case 2:
-                header("Location: ../vista/tec_catalogo.php");
+                header("Location: ../vista/adm_catalogo.php");
             break;
 
             /* 3: Cuando el usuario es de tipo Root */
@@ -57,7 +57,7 @@
 
                 /* 2: Cuando el usuario es Técnico */
                 case 2:
-                    header("Location: ../vista/tec_catalogo.php");
+                    header("Location: ../vista/adm_catalogo.php");
                 break;
 
                 /* 3: Cuando el usuario es de tipo Root */

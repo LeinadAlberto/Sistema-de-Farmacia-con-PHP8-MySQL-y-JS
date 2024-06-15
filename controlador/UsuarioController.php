@@ -8,6 +8,8 @@
 
     $id_usuario = $_SESSION["usuario"];
 
+    $tipo_usuario = $_SESSION["us_tipo"];
+
     if ($_POST["funcion"] == "buscar_usuario") {
         $json = array();
         $fecha_actual = new DateTime();
@@ -187,4 +189,9 @@
         
     }
 
+    if ($_POST["funcion"] == "tipo_usuario") { 
+        
+        echo $tipo_usuario;
+
+    }
 ?>

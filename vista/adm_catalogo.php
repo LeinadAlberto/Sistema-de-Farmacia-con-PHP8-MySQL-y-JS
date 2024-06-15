@@ -2,7 +2,7 @@
     session_start();
 
     /* Si Usuario es Administrador o Root */
-    if ($_SESSION["us_tipo"] == 1 || $_SESSION["us_tipo"] == 3) {
+    if ($_SESSION["us_tipo"] == 1 || $_SESSION["us_tipo"] == 3 || $_SESSION["us_tipo"] == 2) {
 
         include_once "layouts/header.php";
 ?>
