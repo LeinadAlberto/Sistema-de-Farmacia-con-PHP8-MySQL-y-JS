@@ -1,5 +1,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/animate.min.css">
     <!-- CSS para uso de libreria DataTables -->
     <link rel="stylesheet" href="../css/datatables.css">
     <!-- CSS de la vista Administrar Compra -->

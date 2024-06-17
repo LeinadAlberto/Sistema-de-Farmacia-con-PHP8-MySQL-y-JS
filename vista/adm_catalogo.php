@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h1>Catálogo</h1>
+                            <h1 class="animate__animated animate__shakeY">Catálogo</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,7 @@
                         </div><!-- /.card-header -->
 
                         <div class="card-body p-0 table-responsive">
-                            <table class="table table-hover text-nowrap">
+                            <table class="animate__animated animate__fadeIn table table-hover text-nowrap">
                                 <thead class="table-success">
                                     <tr>
                                         <th>Cod</th>
