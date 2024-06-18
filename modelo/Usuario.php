@@ -23,9 +23,9 @@
 
             $query -> execute(array(":dni" => $dni));
 
-            $this -> objetos = $query -> fetchAll();
+            $objetos = $query -> fetchAll();
 
-            foreach ($this -> objetos as $objeto) {
+            foreach ($objetos as $objeto) {
 
                 $contrasena_actual = $objeto -> contrasena_us;
 
@@ -35,7 +35,7 @@
 
                 if (password_verify($pass, $contrasena_actual)) {
 
-                    return $this -> objetos;
+                    return "logueado";
 
                 } 
 
@@ -43,13 +43,32 @@
 
                 if ($pass == $contrasena_actual) {
 
-                    return $this -> objetos;
+                    return "logueado";;
 
                 } 
 
             }
 
         }
+
+        function obtener_dato_logueo($dni) {
+
+            $sql = "SELECT * 
+                    FROM usuario 
+                    INNER JOIN tipo_us
+                    ON us_tipo = id_tipo_us
+                    WHERE dni_us = :dni";
+
+            $query = $this -> acceso -> prepare($sql);
+
+            $query -> execute(array(":dni" => $dni));
+
+            $this -> objetos = $query -> fetchAll();
+
+            return $this -> objetos;
+
+        }
+
 
         /* Método que obtiene los datos de un usuario, mediante su id. */
         function obtener_datos($id) {

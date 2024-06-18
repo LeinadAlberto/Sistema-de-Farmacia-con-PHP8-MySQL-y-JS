@@ -5,6 +5,7 @@
     session_start();
 
     $user = $_POST["user"];
+
     $pass = $_POST["pass"];
 
     $usuario = new Usuario();
@@ -32,20 +33,22 @@
     } else {
 
         /* Si no existe sesión, verificamos si las credenciales son correctas. */
-        $usuario -> loguearse($user, $pass);
-
-        /* Si ingresa correctamente creamos variables de sesión */
-        if (!empty($usuario->objetos)) {
         
-            foreach ($usuario->objetos as $objeto) { 
+        /* Si ingresa correctamente creamos variables de sesión */
+        if (!empty($usuario -> loguearse($user, $pass) == "logueado")) {
+            
+            $usuario -> obtener_dato_logueo($user);
+
+            foreach ($usuario -> objetos as $objeto) { 
+
                 /* print_r($objeto); */
 
                 /* Creando Variables de Sesión */
-                $_SESSION["usuario"] = $objeto->id_usuario;
+                $_SESSION["usuario"] = $objeto -> id_usuario;
 
-                $_SESSION["nombre_us"] = $objeto->nombre_us;
+                $_SESSION["nombre_us"] = $objeto -> nombre_us;
 
-                $_SESSION["us_tipo"] = $objeto->us_tipo;
+                $_SESSION["us_tipo"] = $objeto -> us_tipo;
 
             }
 
