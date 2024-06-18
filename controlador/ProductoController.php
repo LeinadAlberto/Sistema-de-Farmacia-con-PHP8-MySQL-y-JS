@@ -179,18 +179,23 @@
         /* var_dump($productos); */
         /* echo $productos[0] -> adicional;  Forma de acceder a la propiedad adicional del objeto en la posición 0 del array.*/
         foreach ($productos as $resultado) {
+
             $producto -> buscar_id($resultado -> id);
             /* print_r($producto); */
             /* echo $producto->objetos[0]->concentracion; Objeto que tiene una propiedad que se llama objetos, que a la vez almacena un array de objetos. */
             foreach ($producto -> objetos as $objeto) {
+
                 $subtotal = $objeto -> precio * $resultado -> cantidad;
                 /* print_r($objeto); */
                 $producto -> obtener_stock($objeto -> id_producto); 
                 /* echo ($objeto -> id_producto); */
                 /* print_r($producto); */
                 foreach ($producto -> objetos as $obj) {
+
                     $stock = $obj -> total;
+
                 }
+
                 $html .= "
                     <tr prodId='$objeto->id_producto' prodPrecio='$objeto->precio'>
                         <td>$objeto->nombre</td>
@@ -207,12 +212,20 @@
                             <h5>$subtotal</h5>
                         </td>
 
-                        <td><button class='borrar-producto btn btn-danger'><i class='fas fa-times-circle'></i></button></td>
+                        <td>
+                            <button class='borrar-producto btn btn-danger'>
+                                <i class='fas fa-times-circle'></i>
+                            </button>
+                        </td>
                     </tr>
                 "; 
+
             }  
+
         } 
+
         echo $html;
+        
         /* print_r($producto); */
     }
 

@@ -40,7 +40,7 @@ $(document).ready(function() {
             cantidad: 1
         }; 
         
-        console.log(producto);
+        /* console.log(producto); */
 
         let id_producto;
 
@@ -84,7 +84,7 @@ $(document).ready(function() {
             /* Agrega el producto al carrito de compras */
             $('#lista').append(template); 
 
-            console.log("***** Producto Agregando al Carrito de Compras *****")
+            /* console.log("***** Producto Agregando al Carrito de Compras *****"); */
         
             /* Función que permite agregar un producto al LocalStorage */
             AgregarLS(producto);
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
         EliminarLS();
 
-        console.log("**** Carrito de Compras y LocalStorage vaciado *****");
+        /* console.log("**** Carrito de Compras y LocalStorage vaciado *****"); */
 
         Contar_productos(); 
 
@@ -299,16 +299,13 @@ $(document).ready(function() {
 
     /* ================= Eventos y Funciones para la vista Administrar Compra ======================== */
 
-    /* Método que recupera del Local Storage todo el array de productos y lo renderiza dentro la vista 
-    adm_compra.php, especificamente dentro <tbody id="lista-compra">, que es parte de el elemento
-    <table class="compra"> */
-    function RecuperarLS_carrito_compra() {
+    /* Método descartado para listar compras */
+    function RecuperarLS_carrito_compra1() {
 
         let productos; 
         /* console.log(productos); */ // Output: undefined
 
         let id_producto; 
-        /* console.log(id_producto); */ // Output: undefined
 
         productos = RecuperarLS();
         /* console.log('==== Array de Productos en formato JSON ===='); 
@@ -319,14 +316,19 @@ $(document).ready(function() {
         productos.forEach(producto => {
 
             id_producto = producto.id; 
+
+            console.log(id_producto);
+
             /* console.log(`ID del Objeto Producto : ${id_producto}`); */
 
-            $.post('../controlador/ProductoController.php', {funcion, id_producto}, (response) => {
+            $.post('../controlador/ProductoController.php', { funcion, id_producto }, (response) => {
 
                 let template_compra = '';
 
-                let json = JSON.parse(response); 
-                /* console.log(json.id); */
+                let json = JSON.parse(response);
+
+                console.log('id backend: ' + json.id); 
+
                 /* console.log(json); */
                 template_compra = `
                     <tr prodId="${producto.id}" prodPrecio="${json.precio}">
@@ -356,17 +358,46 @@ $(document).ready(function() {
 
     }
 
+    /* Método que recupera del Local Storage todo el array de productos y lo renderiza dentro la vista 
+    adm_compra.php, especificamente dentro <tbody id="lista-compra">, que es parte de el elemento
+    <table class="compra"> */
+    async function RecuperarLS_carrito_compra() {
+
+        let productos; 
+    
+        productos = RecuperarLS();
+
+        /* console.log('==== Array de Productos en formato JSON ====');  */
+
+        /* console.log(productos);   */
+
+        funcion = 'traer_productos'; 
+
+        const response = await fetch('../controlador/ProductoController.php', {
+
+            method: 'POST',
+            headers: {'Content-Type':'application/x-www-form-urlencoded'},
+            body: 'funcion=' + funcion + '&&productos=' + JSON.stringify(productos)
+
+        });
+
+        let resultado = await response.text();
+
+        $('#lista-compra').append(resultado);
+
+    }
+
     $(document).on('click', '#actualizar', (e) => {
         
         let productos, precios;
 
         precios = document.querySelectorAll('.precio');
 
-        console.log(precios);
+        /* console.log(precios); */
 
         productos = RecuperarLS();
 
-        console.log(productos);
+        /* console.log(productos); */
 
         productos.forEach(function(producto, indice) {
 
@@ -386,30 +417,31 @@ $(document).ready(function() {
 
         producto = $(this)[0].activeElement.parentElement.parentElement; /* Selecciona el elemento <tr></tr> */
         
-        console.log(producto);
+        /* console.log(producto); */
 
         id = $(producto).attr('prodId');
 
         precio = $(producto).attr('prodPrecio');
 
-        console.log(id);
+        /* console.log(id); */
 
         cantidad = producto.querySelector('input').value;   /* Obtiene el valor que se ingresa en el input */
 
-        console.log(cantidad);
+        /* console.log(cantidad); */
 
         montos = document.querySelectorAll('.subtotales');   /* NodeList con todos los subtotales */
 
-        console.log(montos);
+        /* console.log(montos); */
 
         productos = RecuperarLS();  /* Array de Objetos JS */
 
-        console.log(productos); 
+        /* console.log(productos); */ 
 
         productos.forEach(function(prod, indice) {
 
-            console.log(prod);
-            console.log(indice);
+            /* console.log(prod); */
+
+            /* console.log(indice); */
 
             if (prod.id === id) {
 
@@ -604,7 +636,7 @@ $(document).ready(function() {
 
         $.post('../controlador/CompraController.php', {funcion, total, nombre, dni, json}, (response) => {
 
-            console.log(response);
+            /* console.log(response); */
 
         });
 
