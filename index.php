@@ -69,8 +69,10 @@
                             <input class="input" type="password" name="pass">
                         </div>    
                     </div><!-- /.input-div -->
+                    
+                    <a class="recuperar-password" href="vista/recuperar.php">Recuperar Contraseña</a>
 
-                    <a href="">Created Warpiece</a>
+                    <!-- <a href="">Created Warpiece</a> -->
 
                     <input type="submit" class="btn" value="Iniciar Sesión">
                 </form>
