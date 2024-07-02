@@ -47,16 +47,17 @@
                     
                     <span id="aviso" class="text-danger text-bold">texto</span>
 
-                    <form action="" method="post">
+                    <form id="form-recuperar" action="" method="post">
                         <!-- DNI -->
                         <div class="input-group mb-3">
-                            <input id="recuperar" type="text" class="form-control" placeholder="DNI">
+                            <input id="dni-recuperar" type="text" class="form-control" placeholder="DNI">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                 <span class="fas fa-address-card" style="color: #3D9898;"></span>
                                 </div>
                             </div>
                         </div>
+                        <!-- Correo Electrónico -->
                         <div class="input-group mb-3">
                             <input id="email-recuperar" type="email" class="form-control" placeholder="Correo Electrónico">
                             <div class="input-group-append">

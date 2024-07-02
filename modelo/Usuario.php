@@ -506,6 +506,55 @@
             $this -> objetos = $query -> fetchAll();
 
         }
+
+        /* Métodos para peticiones desde Controlador recuperar.php que es parte de la 
+        funcionalidad para recuperar contraseña. */
+        function verificar($dni, $email) {
+            
+            $sql = "SELECT *
+                    FROM usuario
+                    WHERE correo_us = :email AND dni_us = :dni";
+
+            $query = $this -> acceso -> prepare($sql);
+
+            $query -> execute(array(":email" => $email, ":dni" => $dni));
+
+            $this -> objetos = $query -> fetchAll();
+
+            if (!empty($this -> objetos)) {
+
+                if ($query -> rowCount() == 1) {
+
+                    echo "encontrado";
+
+                } else {
+
+                    echo "noencontrado";
+
+                }
+
+            } else {
+
+                echo "noencontrado";
+
+            }
+        }
+
+        function remplazar($codigo, $email, $dni) {
+
+            $sql = "UPDATE usuario
+                    SET contrasena_us = :codigo
+                    WHERE correo_us = :email AND dni_us = :dni";
+            
+            $query = $this -> acceso -> prepare($sql);
+
+            $query -> execute(array(":codigo" => $codigo,
+                                    ":email" => $email,
+                                    ":dni" => $dni));
+
+            echo "remplazado";
+
+        }
     }
 
 ?>
