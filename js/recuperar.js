@@ -36,11 +36,13 @@ $(document).ready(function() {
 
                         $('aviso1').hide();
 
-                        if (response2 == 'remplazado') {
+                        /* console.log(response2); */
+
+                        if (response2 == 'enviado') {
 
                             $('#aviso1').show();
 
-                            $('#aviso1').text('Se restablecio la contraseña');
+                            $('#aviso1').text('Se restablecio la contraseña con exito, la nueva contraseña fue enviada a su Correo Electrónico');
 
                             $('#form-recuperar').trigger('reset');
 

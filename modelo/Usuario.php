@@ -552,7 +552,7 @@
                                     ":email" => $email,
                                     ":dni" => $dni));
 
-            echo "remplazado";
+            /* echo "remplazado"; */
 
         }
     }
