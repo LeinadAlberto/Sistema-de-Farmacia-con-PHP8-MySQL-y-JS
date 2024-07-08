@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="../css/css/all.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="../css/adminlte.min.css">
+        <!-- SweetAlert2 - CSS -->
+        <link rel="stylesheet" href="../css/sweetalert2.css">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -41,11 +43,11 @@
 
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">¿Olvidaste tu contraseña? <br>Aquí puede recuperar fácilmente una nueva contraseña.</p>
+                    <p class="login-box-msg">¿Olvidaste tu contraseña? <br>Aquí puedes recuperar fácilmente una nueva contraseña.</p>
 
-                    <span id="aviso1" class="text-success text-bold">texto</span>
+                    <span id="aviso1" class="text-success text-bold"></span>
                     
-                    <span id="aviso" class="text-danger text-bold">texto</span>
+                    <span id="aviso" class="text-danger text-bold mb-2 d-block"></span>
 
                     <form id="form-recuperar" action="" method="post">
                         <!-- DNI -->
@@ -68,7 +70,7 @@
                         </div>
                         <div class="row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block bg-info" style="border-color: #3D9898;">Pide nueva contraseña</button>
+                            <button type="submit" class="btn btn-primary btn-block bg-info" style="border-color: #3D9898;">Pedir nueva contraseña</button>
                         </div>
                         <!-- /.col -->
                         </div>
@@ -95,6 +97,8 @@
         <script src="../js/adminlte.min.js"></script>
         <!-- Custom JS -->
         <script src="../js/recuperar.js"></script>
+        <!-- SweetAlert2 - JS -->
+        <script src="../js/sweetalert2.js"></script>
 
     </body>
 </html>
