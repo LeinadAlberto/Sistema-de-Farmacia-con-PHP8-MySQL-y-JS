@@ -449,4 +449,17 @@ $(document).ready(function() {
 
     });
 
+    /* Evento para Reporte de Productos */
+    $(document).on('click', '#button-reporte', (e) => {
+
+        funcion = 'reporte_productos';
+
+        $.post('../controlador/ProductoController.php', { funcion }, (response) => {
+
+            console.log(response);
+
+        });
+
+    });
+
 });

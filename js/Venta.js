@@ -43,7 +43,7 @@ $(document).ready(function() {
             { data: 'dni' },
             { data: 'total' },
             { data: 'vendedor' },
-            { defaultContent: `<button class="btn btn-sm btn-secondary">
+            { defaultContent: `<button class="imprimir btn btn-sm btn-secondary">
                                     <i class="fas fa-print"></i>
                                 </button>
                                <button class="ver btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#vista_venta">
@@ -105,6 +105,22 @@ $(document).ready(function() {
             });
 
         });
+    });
+
+    $('#tabla_venta tbody').on('click', '.imprimir', function() {
+
+        let datos = datatable.row($(this).parents()).data();
+
+        let id = datos.id_venta;
+
+        $.post('../controlador/PDFController.php', { id }, (response) => {
+
+            console.log(response);
+
+            window.open('../pdf/pdf-' + id + '.pdf', '_blank');
+
+        });
+
     });
 
 });

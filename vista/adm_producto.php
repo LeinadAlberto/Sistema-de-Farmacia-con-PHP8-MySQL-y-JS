@@ -208,14 +208,18 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <h1>Gestión productos 
                         <button id="button-crear" type="button" data-toggle="modal" data-target="#crearproducto" class="btn bg-gradient-info ml-2">
                             Crear producto
                         </button>
+
+                        <button id="button-reporte" type="button" class="btn bg-gradient-success ml-2">
+                            Reporte de Productos
+                        </button>
                     </h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="adm_catalogo.php">Inicio</a></li>
                         <li class="breadcrumb-item active">Gestión producto</li>

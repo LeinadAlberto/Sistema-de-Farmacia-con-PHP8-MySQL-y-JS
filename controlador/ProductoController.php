@@ -287,3 +287,7 @@
         echo $error;
 
     }
+
+    if ($_POST["funcion"] == "reporte_productos") {
+
+    }
