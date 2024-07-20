@@ -211,7 +211,7 @@
                 <div class="col-sm-8">
                     <h1>Gestión productos 
                         <button id="button-crear" type="button" data-toggle="modal" data-target="#crearproducto" class="btn bg-gradient-info ml-2">
-                            Crear producto
+                            Crear Producto
                         </button>
 
                         <button id="button-reporte" type="button" class="btn bg-gradient-success ml-2">

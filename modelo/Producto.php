@@ -276,4 +276,37 @@ class Producto {
 
     }
     
+    /* Método que trabaja con la parte de Reporte Productos */
+    function reporte_producto() {
+
+        $sql = "SELECT 
+                    id_producto, 
+                    producto.nombre as nombre,
+                    concentracion,
+                    adicional,
+                    precio,
+                    laboratorio.nombre as laboratorio,
+                    tipo_producto.nombre as tipo,
+                    presentacion.nombre as presentacion,
+                    producto.avatar as avatar,
+                    prod_lab,
+                    prod_tip_prod,
+                    prod_present
+                FROM producto
+                JOIN laboratorio ON prod_lab = id_laboratorio
+                JOIN tipo_producto ON prod_tip_prod = id_tip_prod
+                JOIN presentacion ON prod_present = id_presentacion
+                AND producto.nombre NOT LIKE ''
+                ORDER BY producto.nombre";
+
+        $query = $this -> acceso -> prepare($sql);
+
+        $query -> execute();
+
+        $this -> objetos = $query -> fetchAll();
+
+        return $this -> objetos;
+            
+        
+    }
 }

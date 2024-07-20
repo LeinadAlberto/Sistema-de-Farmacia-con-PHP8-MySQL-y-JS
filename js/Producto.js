@@ -458,7 +458,9 @@ $(document).ready(function() {
 
             console.log(response);
 
-        });
+            window.open('../pdf/pdf-' + funcion + '.pdf', '_blank');
+
+        }); 
 
     });
 
