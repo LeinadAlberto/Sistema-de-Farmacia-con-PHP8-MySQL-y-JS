@@ -9,6 +9,33 @@
         
 <?php include_once "layouts/nav.php"; ?>
 
+<!-- Modal para seleccionar Formato del Reporte de Productos -->
+<div class="modal fade" id="modalFormatoReporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card card-info">
+
+                <div class="card-header">
+                    <h3 class="card-title">Elegir el formato del Reporte</h3>
+                    <button data-dismiss="modal" aria-label="close" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div><!-- /.card-header -->
+                
+                <div class="card-body">
+    
+                    <div class="form-group d-flex justify-content-sm-around">
+                        <button id="button-reporte" class="btn btn-outline-danger">Formato PDF <i class="far fa-file-pdf ml-2"></i></button>
+                        <button class="btn btn-outline-success">Formato Excel<i class="far fa-file-excel ml-2"></i></button>
+                    </div>
+
+                </div><!-- /.card-body -->
+
+            </div><!-- /.card -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- Modal para Crear Lote -->
 <div class="modal fade" id="crearlote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -210,11 +237,12 @@
             <div class="row mb-2">
                 <div class="col-sm-8">
                     <h1>Gestión productos 
-                        <button id="button-crear" type="button" data-toggle="modal" data-target="#crearproducto" class="btn bg-gradient-info ml-2">
+                        <button id="button-crear" type="button" data-toggle="modal" data-target="#crearproducto" class="btn btn-outline-info ml-2">
                             Crear Producto
                         </button>
 
-                        <button id="button-reporte" type="button" class="btn bg-gradient-success ml-2">
+                        <!-- id="button-reporte" -->
+                        <button type="button" data-toggle="modal" data-target="#modalFormatoReporte" class="btn btn-outline-success ml-2">
                             Reporte de Productos
                         </button>
                     </h1>

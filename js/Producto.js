@@ -452,16 +452,118 @@ $(document).ready(function() {
     /* Evento para Reporte de Productos */
     $(document).on('click', '#button-reporte', (e) => {
 
+        Mostrar_Loader('generarReportePDF');
+
         funcion = 'reporte_productos';
 
         $.post('../controlador/ProductoController.php', { funcion }, (response) => {
 
-            console.log(response);
+            if (response == '') {
 
-            window.open('../pdf/pdf-' + funcion + '.pdf', '_blank');
+                window.open('../pdf/pdf-' + funcion + '.pdf', '_blank');
+                
+                Cerrar_Loader('exito_reporte');
+
+            } else {
+
+                Cerrar_Loader('error_reporte');
+
+            }
 
         }); 
 
     });
+
+    function Mostrar_Loader(Mensaje) {
+
+        var texto = null;
+
+        var mostrar = false;
+
+        switch (Mensaje) {
+
+            case 'generarReportePDF':
+
+                texto = 'Generando el reporte de Productos. Este proceso puede tardar unos instantes.';
+
+                mostrar = true;
+
+                break;
+          
+        }
+
+        if (mostrar) {
+
+            Swal.fire({
+
+                title: 'Generando reporte',
+
+                text: texto,
+
+                showConfirmButton: false
+
+            });
+
+        }
+
+    }
+
+    function Cerrar_Loader(Mensaje) {
+
+        var tipo = null;
+
+        var texto = null;
+
+        var mostrar = false;
+
+        switch (Mensaje) {
+
+            case 'exito_reporte':
+                
+                tipo = 'success';
+
+                texto = 'Reporte de productos generado exitosamente.';
+
+                mostrar = true;
+
+            break;
+
+            case 'error_reporte':
+            
+                tipo = 'error';
+
+                texto = 'No se pudo completar la generación del reporte de productos. Inténtalo nuevamente o contacta a nuestro equipo de soporte.';
+
+                mostrar = true;
+
+            break;
+
+            default:
+
+                swal.close();
+
+            break;
+          
+        }
+
+        if (mostrar) {
+
+            Swal.fire({
+
+                position: 'center',
+
+                icon: tipo,
+
+                text: texto,
+
+                timer: 7000,
+
+                showConfirmButton: true
+
+            });
+
+        }
+
+    }
 
 });
